@@ -1,5 +1,5 @@
 #' @title Interval Wise Testing procedure for testing functional analysis of variance
-#' 
+#'
 #' @description The function implements the Interval Wise Testing procedure for testing mean differences between several
 #' functional populations in a one-way or multi-way functional analysis of variance framework.
 #' Functional data are tested locally and unadjusted and adjusted p-value
