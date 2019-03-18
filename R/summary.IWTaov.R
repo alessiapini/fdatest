@@ -1,4 +1,5 @@
-# Summary for ITP in Anova framework
+#' @export summary.IWTaov
+#' 
 summary.IWTaov <- function(object, ...) {
   #object <- x
   printresult <- vector('list')

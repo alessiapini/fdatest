@@ -1,3 +1,5 @@
+#' @export summary.ITPlm
+#' 
 summary.ITPlm <-
 function(object, ...){
   printresult = vector('list')

@@ -39,9 +39,9 @@
 #' \item{heatmap.matrix.F}{Heatmap matrix of p-values of functional F-test (used only for plots).}
 #' \item{heatmap.matrix.factors}{Heatmap matrix of p-values of functional F-tests on each factor of the analysis of variance (used only for plots).}
 #'
-#' @seealso See \code{\link{summary.ITPaov}} for summaries and \code{\link{plot.ITPaov}} for plotting the results.
-#' See \code{\link{IWTaov}} for a functional analysis of variance test that is not based on an a-priori selected basis expansion.
-#' See also \code{\link{ITPlmbspline}} to fit and test a functional-on-scalar linear model applying the ITP, and \code{\link{ITP1bspline}}, \code{\link{ITP2bspline}}, \code{\link{ITP2fourier}}, \code{\link{ITP2pafourier}} for one-population and two-population tests.
+#' @seealso See \code{\link{summary.IWTaov}} for summaries and \code{\link{plot.IWTaov}} for plotting the results.
+#' See \code{\link{ITPaov}} for a functional analysis of variance test based on B-spline basis expansion.
+#' See also \code{\link{IWTlm}} to fit and test a functional-on-scalar linear model applying the IWT, and \code{\link{IWT1}}, \code{\link{IWT2}}  for one-population and two-population tests.
 #'
 #'
 #' @examples
@@ -50,19 +50,19 @@
 #' temperature <- rbind(NASAtemp$milan,NASAtemp$paris)
 #' groups <- c(rep(0,22),rep(1,22))
 #'
-#' # Performing the ITP
-#' ITP.result <- ITPaovbspline(temperature ~ groups,B=1000,nknots=20,order=3)
+#' # Performing the IWT
+#' IWT.result <- IWTaov(temperature ~ groups,B=1000)
 #'
 #' # Summary of the ITP results
-#' summary(ITP.result)
+#' summary(IWT.result)
 #'
-#' # Plot of the ITP results
+#' # Plot of the IWT results
 #' layout(1)
-#' plot(ITP.result)
+#' plot(IWT.result)
 #'
 #' # All graphics on the same device
 #' layout(matrix(1:4,nrow=2,byrow=FALSE))
-#' plot(ITP.result,main='NASA data', plot.adjpval = TRUE,xlab='Day',xrange=c(1,365))
+#' plot(IWT.result,main='NASA data', plot.adjpval = TRUE,xlab='Day',xrange=c(1,365))
 #'
 #' @references
 #' Pini, A., & Vantini, S. (2017). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424

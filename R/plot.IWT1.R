@@ -1,4 +1,4 @@
-# Plot for ITP in One-Population framework
+#' @export plot.IWT1
 plot.IWT1 <- function(x, xrange = c(0,1),
                       alpha1 = 0.05, alpha2 = 0.01,
                       ylab = 'Functional Data', main = NULL, 

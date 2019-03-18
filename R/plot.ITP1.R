@@ -1,3 +1,4 @@
+#' @export plot.ITP1
 plot.ITP1 <-
 function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
                       ylab='Functional Data',main=NULL,lwd=1,col=1,pch=16,ylim=range(object$data.eval),

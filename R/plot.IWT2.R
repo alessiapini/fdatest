@@ -1,7 +1,5 @@
-# Plot method for object of class 'IWT2'
-# Returns two plots: 
-# First plot: functional data and gray areas indicating significant differences at levels alpha1 and alpha2
-# Second plot: adjusted p-value function and gray areas indicating significant differences at levels alpha1 and alpha2
+#' @export plot.IWT2
+
 plot.IWT2 <- function(x, xrange = c(0,1),
                       alpha1 = 0.05, alpha2 = 0.01,
                       ylab = 'Functional Data', main = NULL, 

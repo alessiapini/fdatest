@@ -1,4 +1,42 @@
-# Heat map plots 
+#' @title Heatmap plot of the Interval Wise Testing Procedure results
+#'
+#' @description Plotting function creating a graphical output of the IWT: 
+#' the p-value heat-map, the plot of the corrected p-values, and the plot of the functional data.
+#' 
+#' @param IWT_result Results of the ITP, as created by \code{\link{IWT1}}, 
+#' \code{\link{IWT2}}, \code{\link{IWTaov}}, and \code{\link{IWTlm}}.
+#' 
+#' @param alpha Threshold for the interval-wise error rate used for the hypothesis test. The default is \code{alpha=0.05}.
+#' 
+#' @param abscissa_range Range of the plot abscissa. The default is \code{c(0,1)}.
+#' 
+#' @param nlevel Number of desired color levels for the p-value heatmap. The default is \code{nlevel=20}.
+#' 
+#' @return No value returned.
+#' 
+#' @seealso See \code{\link{plot.IWT1}}, \code{\link{plot.IWT2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.
+#' 
+#' @examples
+#' # Importing the NASA temperatures data set
+#' data(NASAtemp)
+#' # Performing the IWT for two populations 
+#' IWT.result <- IWT2(NASAtemp$milan,NASAtemp$paris)
+#' 
+#' # Plotting the results of the IWT
+#' IWTimage(IWT.result,abscissa_range=c(0,12))
+#' 
+#' # Selecting the significant components for the radius at 5\% level
+#' which(IWT.result$corrected.pval < 0.05)
+#' 
+#' @references
+#' Pini, A., & Vantini, S. (2018). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424
+#'
+#' Pini, A., Vantini, S., Colosimo, B. M., & Grasso, M. (2018). Domain‐selective functional analysis of variance for supervised statistical profile monitoring of signal data. \emph{Journal of the Royal Statistical Society: Series C (Applied Statistics)} 67(1), 55-81.
+#'
+#' Abramowicz, K., Hager, C. K., Pini, A., Schelin, L., Sjostedt de Luna, S., & Vantini, S. (2018).
+#' Nonparametric inference for functional‐on‐scalar linear models applied to knee kinematic hop data after injury of the anterior cruciate ligament. \emph{Scandinavian Journal of Statistics} 45(4), 1036-1061.
+#'
+#' @export IWTimage
 IWTimage <- function(IWT_result, alpha = 0.05,  
                      abscissa_range = c(0, 1), nlevel = 20,plot_unadjusted=FALSE) {
   min_ascissa <- abscissa_range[1] - (abscissa_range[2] - abscissa_range[1]) / 2

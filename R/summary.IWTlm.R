@@ -1,3 +1,5 @@
+#' @export summary.IWTlm
+#' 
 summary.IWTlm <-
 function(object, ...){
   printresult = vector('list')
