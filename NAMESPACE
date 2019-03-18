@@ -25,3 +25,10 @@ export(summary.ITPaov)
 export(summary.ITPlm)
 export(summary.IWTaov)
 export(summary.IWTlm)
+
+importFrom("grDevices", "devAskNewPage", "rainbow")
+importFrom("graphics", "abline", "axis", "image", "layout", "lines",
+           "matlines", "matplot", "par", "plot", "points", "rect")
+importFrom("stats", "aov", "as.formula", "cov", "fft", "lm", "lm.fit",
+           "model.frame", "model.matrix", "model.response", "optimize",
+           "rbinom", "summary.lm", "terms")
