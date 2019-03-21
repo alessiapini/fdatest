@@ -52,19 +52,19 @@ data(NASAtemp)
 temperature <- rbind(NASAtemp$milan,NASAtemp$paris)
 groups <- c(rep(0,22),rep(1,22))
 
-# Performing the ITP
-ITP.result <- ITPaovbspline(temperature ~ groups,B=1000,nknots=20,order=3)
+# Performing the IWT
+IWT.result <- IWTaov(temperature ~ groups,B=1000)
 
-# Summary of the ITP results
-summary(ITP.result)
+# Summary of the IWT results
+summary(IWT.result)
 
-# Plot of the ITP results
+# Plot of the IWT results
 layout(1)
-plot(ITP.result)
+plot(IWT.result)
 
 # All graphics on the same device
 layout(matrix(1:4,nrow=2,byrow=FALSE))
-plot(ITP.result,main='NASA data', plot_adjpval = TRUE,xlab='Day',xrange=c(1,365))
+plot(IWT.result,main='NASA data', plot_adjpval = TRUE,xlab='Day',xrange=c(1,365))
 
 }
 \references{
