@@ -43,7 +43,7 @@ Label of \code{y} axis of the plot of functional data. Default is "\code{Functio
 An overall title for the plots (it will be pasted to "\code{Functional Data and F-test}" for the first plot and "\code{factor}" for the other plots). 
 }
   \item{lwd}{
-Line width for the plot of functional data. Default is \code{lwd=16}.
+Line width for the plot of functional data. Default is \code{lwd=1}.
 }
   \item{pch}{
 Point character for the plot of adjusted p-values. Default is \code{pch=16}.
