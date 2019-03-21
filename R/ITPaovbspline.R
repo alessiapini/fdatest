@@ -71,7 +71,7 @@
 #'
 #' B. F. J. Manly (2006). Randomization, \emph{Bootstrap and Monte Carlo Methods in Biology}. Vol. 70. CRC Press.
 #'
-#' @export ITPaovbspline
+#' @export
 
 
 ITPaovbspline <-

@@ -60,7 +60,7 @@
 #' Nonparametric inference for functional‐on‐scalar linear models applied to knee kinematic hop data after injury of the anterior cruciate ligament. \emph{Scandinavian Journal of Statistics} 45(4), 1036-1061.
 #'
 #'
-#' @export plot.ITP2
+#' @export
 #' 
 
 plot.ITP2 <-

@@ -50,7 +50,7 @@
 #' @references A. Pini and S. Vantini (2017).
 #' The Interval Testing Procedure: Inference for Functional Data Controlling the Family Wise Error Rate on Intervals. Biometrics 73(3): 835–845.
 #'
-#' @export ITP1fourier
+#' @export
 
 
 ITP1fourier <-

@@ -1,4 +1,4 @@
-#' @export summary.IWTlm
+#' @export 
 #' 
 summary.IWTlm <-
 function(object, ...){

@@ -1,4 +1,4 @@
-#' @export summary.ITPlm
+#' @export
 #' 
 summary.ITPlm <-
 function(object, ...){

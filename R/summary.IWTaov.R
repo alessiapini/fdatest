@@ -1,4 +1,4 @@
-#' @export summary.IWTaov
+#' @export
 #' 
 summary.IWTaov <- function(object, ...) {
   #object <- x

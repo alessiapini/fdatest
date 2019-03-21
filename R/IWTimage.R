@@ -36,7 +36,7 @@
 #' Abramowicz, K., Hager, C. K., Pini, A., Schelin, L., Sjostedt de Luna, S., & Vantini, S. (2018).
 #' Nonparametric inference for functional‐on‐scalar linear models applied to knee kinematic hop data after injury of the anterior cruciate ligament. \emph{Scandinavian Journal of Statistics} 45(4), 1036-1061.
 #'
-#' @export IWTimage
+#' @export
 IWTimage <- function(IWT_result, alpha = 0.05,  
                      abscissa_range = c(0, 1), nlevel = 20,plot_unadjusted=FALSE) {
   min_ascissa <- abscissa_range[1] - (abscissa_range[2] - abscissa_range[1]) / 2

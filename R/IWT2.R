@@ -60,7 +60,7 @@
 #'
 #' Pini, A., & Vantini, S. (2017). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424
 #'
-#' @export IWT2
+#' @export
 
 
 IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alternative="two.sided"){

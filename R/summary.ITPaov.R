@@ -1,4 +1,4 @@
-#' @export summary.ITPaov
+#' @export
 summary.ITPaov <-
 function(object, ...){
   printresult = vector('list')

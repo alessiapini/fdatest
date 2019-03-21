@@ -54,7 +54,7 @@
 #'
 #' Pini, A., & Vantini, S. (2017). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424
 #'
-#' @export IWT1
+#' @export
 
 IWT1 <- function(data,mu=0,B=1000,dx=NULL,recycle=TRUE){
   pval.correct <- function(pval.matrix){

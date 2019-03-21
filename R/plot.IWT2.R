@@ -1,4 +1,4 @@
-#' @export plot.IWT2
+#' @export
 
 plot.IWT2 <- function(x, xrange = c(0,1),
                       alpha1 = 0.05, alpha2 = 0.01,

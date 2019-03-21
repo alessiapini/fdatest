@@ -1,4 +1,4 @@
-#' @export plot.IWTlm
+#' @export
 ###################################################################################################################################################
 # Nonparametric inference for functional-on-scalar linear models applied to knee kinematic hop data after injury of the anterior cruciate ligament
 # Plot IWT results in Linear Models framework
