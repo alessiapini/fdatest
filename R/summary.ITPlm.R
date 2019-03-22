@@ -5,8 +5,8 @@ function(object, ...){
   printresult = vector('list')
   printresult$call = object$call
   #class(printresult) <- "lm"
-  printresult$ttest = matrix(data=apply(object$corrected.pval.t,1,min),ncol=1)
-  var.names = rownames(object$corrected.pval.t)
+  printresult$ttest = matrix(data=apply(object$adjusted.pval.t,1,min),ncol=1)
+  var.names = rownames(object$adjusted.pval.t)
   rownames(printresult$ttest) = var.names
   printresult$ttest = as.data.frame(printresult$ttest)
   signif = rep('',length(var.names))
@@ -20,7 +20,7 @@ function(object, ...){
   printresult$R2 = as.matrix(range(object$R2.eval))
   colnames(printresult$R2) = 'Range of functional R-squared'
   rownames(printresult$R2) = c('Min R-squared', 'Max R-squared')
-  printresult$ftest = as.matrix(min(object$corrected.pval.F))
+  printresult$ftest = as.matrix(min(object$adjusted.pval.F))
   printresult$ftest = as.data.frame(printresult$ftest)
   signif.f = ''
   signif.f[which(printresult$ftest[,1] <0.001)] = '***'

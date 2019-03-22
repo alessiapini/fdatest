@@ -96,7 +96,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
   
   
   matplot(Abscissa,t(object$data.eval),type='l',col=col,main=main.f,ylab=ylab,ylim=ylim,lwd=lwd,...)
-  difference1 <- which(object$corrected.pval.F < alpha1)
+  difference1 <- which(object$adjusted.pval.F < alpha1)
   if (length(difference1) > 0) {
     for (j in 1:length(difference1)) {
       min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -106,7 +106,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
     rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
   }
   
-  difference2 <- which(object$corrected.pval.F < alpha2)
+  difference2 <- which(object$adjusted.pval.F < alpha2)
   if (length(difference2) > 0) {
     for (j in 1:length(difference2)) {
       min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -119,12 +119,12 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
   
   formula <- object$call$formula
   mf <- model.frame(formula)
-  nvar <- dim(object$corrected.pval.factors)[1]
+  nvar <- dim(object$adjusted.pval.factors)[1]
   names_all <- colnames(object$design.matrix)
   interaz <- grep(':',names_all)
   
-  for(var in 1:(dim(object$corrected.pval.factors)[1])){
-    var.name = rownames(object$corrected.pval.factors)[var]
+  for(var in 1:(dim(object$adjusted.pval.factors)[1])){
+    var.name = rownames(object$adjusted.pval.factors)[var]
     main.t <- paste(main,': factor',var.name,sep=' ')
     main.t <- sub("^ : +", "", main.t)
     
@@ -152,7 +152,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
     
     
     matplot(Abscissa,t(object$data.eval),type='l',col=colors,ylim=ylim,lwd=1,main=main.t,ylab=ylab,...)
-    difference1 <- which(object$corrected.pval.factors[var,] < alpha1)
+    difference1 <- which(object$adjusted.pval.factors[var,] < alpha1)
     if (length(difference1) > 0) {
       for (j in 1:length(difference1)) {
         min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -161,7 +161,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
       }
       rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
     }
-    difference2 <- which(object$corrected.pval.factors[var,] < alpha2)
+    difference2 <- which(object$adjusted.pval.factors[var,] < alpha2)
     if (length(difference2) > 0) {
       for (j in 1:length(difference2)) {
         min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -180,8 +180,8 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
     main.p <- paste(main,': Adjusted p-values - F-test')
     main.p <- sub("^ : +", "", main.p)
     Abscissa <- abscissa.pval
-    plot(Abscissa,object$corrected.pval.F,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
-    difference1 <- which(object$corrected.pval.F<alpha1)
+    plot(Abscissa,object$adjusted.pval.F,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
+    difference1 <- which(object$adjusted.pval.F<alpha1)
     if (length(difference1) > 0) {
       for (j in 1:length(difference1)) {
         min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -190,7 +190,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
       }
       rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
     }
-    difference2 <- which(object$corrected.pval.F<alpha2)
+    difference2 <- which(object$adjusted.pval.F<alpha2)
     if (length(difference2) > 0) {
       for (j in 1:length(difference2)) {
         min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -202,14 +202,14 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
     for(j in 0:10){
       abline(h=j/10,col='lightgray',lty="dotted")
     }
-    points(Abscissa,object$corrected.pval.F,pch=pch)
+    points(Abscissa,object$adjusted.pval.F,pch=pch)
     
-    for(var in 1:(dim(object$corrected.pval.factors)[1])){
-      var.name = rownames(object$corrected.pval.factors)[var]
+    for(var in 1:(dim(object$adjusted.pval.factors)[1])){
+      var.name = rownames(object$adjusted.pval.factors)[var]
       main.p <- paste(main,': Adjusted p-values - factor',var.name)
       main.p <- sub("^ : +", "", main.p)
-      plot(Abscissa,object$corrected.pval.factors[var,],pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
-      difference1 <- which(object$corrected.pval.factors[var,]<alpha1)
+      plot(Abscissa,object$adjusted.pval.factors[var,],pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
+      difference1 <- which(object$adjusted.pval.factors[var,]<alpha1)
       if (length(difference1) > 0) {
         for (j in 1:length(difference1)) {
           min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -218,7 +218,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
         }
         rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
       }
-      difference2 <- which(object$corrected.pval.factors[var,]<alpha2)
+      difference2 <- which(object$adjusted.pval.factors[var,]<alpha2)
       if (length(difference2) > 0) {
         for (j in 1:length(difference2)) {
           min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -230,7 +230,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
       for(j in 0:10){
         abline(h=j/10,col='lightgray',lty="dotted")
       }
-      points(Abscissa,object$corrected.pval.factors[var,],pch=pch)
+      points(Abscissa,object$adjusted.pval.factors[var,],pch=pch)
     }
   }
   par(ask=F) 

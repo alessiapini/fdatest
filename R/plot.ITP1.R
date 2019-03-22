@@ -35,8 +35,8 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
     # pval
     main.p <- paste(main,': Adjusted p-values')
     main.p <- sub("^ : +", "", main.p)
-    plot(abscissa.pval,object$corrected.pval,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',xlab='Frequency')
-    difference1 <- which(object$corrected.pval<alpha1)
+    plot(abscissa.pval,object$adjusted.pval,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',xlab='Frequency')
+    difference1 <- which(object$adjusted.pval<alpha1)
     if(length(difference1)>0){
       for(j in 1:length(difference1)){
         min.rect <- abscissa.pval[difference1[j]] - 0.5
@@ -45,7 +45,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
       }
       rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = NULL,border='black')
     }
-    difference2 <- which(object$corrected.pval<alpha2)
+    difference2 <- which(object$adjusted.pval<alpha2)
     if(length(difference2)>0){
       for(j in 1:length(difference2)){
         min.rect <- abscissa.pval[difference2[j]] - 0.5
@@ -57,7 +57,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
     for(j in 0:10){
       abline(h=j/10,col='lightgray',lty="dotted")
     }
-    points(1:p,object$corrected.pval,pch=pch)
+    points(1:p,object$adjusted.pval,pch=pch)
     
     
     
@@ -72,7 +72,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
     main.data <- paste(main,': Functional Data')
     main.data <- sub("^ : +", "", main.data)
     matplot(Abscissa,t(object$data.eval),type='l',main=main.data,ylab=ylab,col=col,lwd=lwd,ylim=ylim,...)
-    difference1 <- which(object$corrected.pval<alpha1)
+    difference1 <- which(object$adjusted.pval<alpha1)
     if (length(difference1) > 0) {
       for (j in 1:length(difference1)) {
         min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -81,7 +81,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
       }
       rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
     }
-    difference2 <- which(object$corrected.pval<alpha2)
+    difference2 <- which(object$adjusted.pval<alpha2)
     if (length(difference2) > 0) {
       for (j in 1:length(difference2)) {
         min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -104,8 +104,8 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
     # pval
     main.p <- paste(main,': Adjusted p-values')
     main.p <- sub("^ : +", "", main.p)
-    plot(abscissa.pval,object$corrected.pval,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
-    difference1 <- which(object$corrected.pval<alpha1)
+    plot(abscissa.pval,object$adjusted.pval,pch=pch,ylim=c(0,1),main=main.p,ylab='p-value',...)
+    difference1 <- which(object$adjusted.pval<alpha1)
     if (length(difference1) > 0) {
       for (j in 1:length(difference1)) {
         min.rect <- abscissa.pval[difference1[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -114,7 +114,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
       }
       rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL, border = "black")
     }
-    difference2 <- which(object$corrected.pval<alpha2)
+    difference2 <- which(object$adjusted.pval<alpha2)
     if (length(difference2) > 0) {
       for (j in 1:length(difference2)) {
         min.rect <- abscissa.pval[difference2[j]] - (abscissa.pval[2] - abscissa.pval[1])/2
@@ -126,7 +126,7 @@ function(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,
     for(j in 0:10){
       abline(h=j/10,col='lightgray',lty="dotted")
     }
-    points(abscissa.pval,object$corrected.pval,pch=pch)
+    points(abscissa.pval,object$adjusted.pval,pch=pch)
     
   }
   par(ask=FALSE) 
