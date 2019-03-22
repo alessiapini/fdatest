@@ -27,6 +27,8 @@ to \code{\link{IWTaov}}.}
 
 \item{ylab}{Label of \code{y} axis of the plot of functional data. Default is "\code{Functional Data}".}
 
+\item{main}{An overall title for the plots (it will be pasted to "Functional Data and F-test" for the first plot and to factor names for the other plots).}
+
 \item{lwd}{Line width for the plot of the adjusted p-value function. Default is \code{lwd=1}.}
 
 \item{type}{line type for the plot of the adjusted p-value function. Default is type='l'.}

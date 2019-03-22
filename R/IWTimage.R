@@ -12,6 +12,8 @@
 #' 
 #' @param nlevel Number of desired color levels for the p-value heatmap. The default is \code{nlevel=20}.
 #' 
+#' @param plot_unadjusted Flag indicating if the unadjusted p-value function has to be added to the plots. The default is \code{FALSE}. 
+#' 
 #' @return No value returned.
 #' 
 #' @seealso See \code{\link{plot.IWT1}}, \code{\link{plot.IWT2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.

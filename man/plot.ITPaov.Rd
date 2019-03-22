@@ -19,20 +19,22 @@ to \code{\link{ITPaov}}.}
 \item{alpha2}{Second level of significance used to select and display significant effects. Default is \code{alpha1 = 0.01}. 
 \code{alpha1} and \code{alpha2} are s.t. \code{alpha2 < alpha1}. Otherwise the two values are switched.}
 
+\item{plot.adjpval}{A logical indicating wether the plots of adjusted p-values have to be done. Default is \code{plot_adjpval = FALSE}.}
+
 \item{ylim}{Range of the \code{y} axis. Default is \code{NULL}, giving a plot with authomatic range for functional data.}
 
 \item{col}{Colors for the plot of functional data. Default is \code{col = 1}.}
 
 \item{ylab}{Label of \code{y} axis of the plot of functional data. Default is "\code{Functional Data}".}
 
-\item{lwd}{Line width for the plot of the adjusted p-value function. Default is \code{lwd=1}.}
+\item{main}{An overall title for the plots (it will be pasted to "Functional Data and F-test" for the first plot and to factor names for the other plots).}
+
+\item{lwd}{Line width for the plot of functional data. Default is \code{lwd=1}.}
+
+\item{pch}{Point character for the plot of adjusted p-values. Default is \code{pch=16}.}
 
 \item{...}{Additional plotting arguments that can be used with function \code{plot}, 
 such as \code{\link{graphical parameters}} (see \code{\link{par}}).}
-
-\item{plot_adjpval}{A logical indicating wether the plots of adjusted p-values have to be done. Default is \code{plot_adjpval = FALSE}.}
-
-\item{type}{line type for the plot of the adjusted p-value function. Default is type='l'.}
 }
 \value{
 No value returned. 

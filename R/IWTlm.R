@@ -16,10 +16,10 @@
 #'
 #' @param method Permutation method used to calculate the p-value of permutation tests. Choose "\code{residuals}" for the permutations of residuals under the reduced model, according to the Freedman and Lane scheme, and "\code{responses}" for the permutation of the responses, according to the Manly scheme.
 #'
-#' @param dx: step size for the point-wise evaluations of functional data. dx is only used ia an object of 
+#' @param dx step size for the point-wise evaluations of functional data. dx is only used ia an object of 
 #' class 'fd' is provided as response in the formula.
 #' 
-#' @param recycle: flag specifying whether the recycled version of IWT has to be used.
+#' @param recycle flag specifying whether the recycled version of IWT has to be used.
 #'
 #' @return \code{IWTlm} returns an object of \code{\link{class}} "\code{IWTlm}". The function \code{summary} is used to obtain and print a summary of the results.
 #' An object of class "\code{ITPlm}" is a list containing at least the following components:

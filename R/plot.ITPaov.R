@@ -14,7 +14,7 @@
 #' @param alpha2 Second level of significance used to select and display significant effects. Default is \code{alpha1 = 0.01}. 
 #' \code{alpha1} and \code{alpha2} are s.t. \code{alpha2 < alpha1}. Otherwise the two values are switched.
 #' 
-#' @param plot_adjpval A logical indicating wether the plots of adjusted p-values have to be done. Default is \code{plot_adjpval = FALSE}.
+#' @param plot.adjpval A logical indicating wether the plots of adjusted p-values have to be done. Default is \code{plot_adjpval = FALSE}.
 #' 
 #' @param ylim Range of the \code{y} axis. Default is \code{NULL}, giving a plot with authomatic range for functional data.
 #' 
@@ -22,9 +22,11 @@
 #' 
 #' @param ylab Label of \code{y} axis of the plot of functional data. Default is "\code{Functional Data}".
 #' 
-#' @param lwd Line width for the plot of the adjusted p-value function. Default is \code{lwd=1}.
+#' @param main An overall title for the plots (it will be pasted to "Functional Data and F-test" for the first plot and to factor names for the other plots).
 #' 
-#' @param type line type for the plot of the adjusted p-value function. Default is type='l'.
+#' @param lwd Line width for the plot of functional data. Default is \code{lwd=1}.
+#' 
+#' @param pch Point character for the plot of adjusted p-values. Default is \code{pch=16}.
 #' 
 #' @param ... Additional plotting arguments that can be used with function \code{plot}, 
 #' such as \code{\link{graphical parameters}} (see \code{\link{par}}).

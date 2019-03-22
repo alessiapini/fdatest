@@ -19,10 +19,10 @@ Example: y ~ A + B
 
 \item{method}{Permutation method used to calculate the p-value of permutation tests. Choose "\code{residuals}" for the permutations of residuals under the reduced model, according to the Freedman and Lane scheme, and "\code{responses}" for the permutation of the responses, according to the Manly scheme.}
 
-\item{dx:}{step size for the point-wise evaluations of functional data. dx is only used ia an object of 
+\item{dx}{step size for the point-wise evaluations of functional data. dx is only used ia an object of 
 class 'fd' is provided as response in the formula.}
 
-\item{recycle:}{flag specifying whether the recycled version of IWT has to be used.}
+\item{recycle}{flag specifying whether the recycled version of IWT has to be used.}
 }
 \value{
 \code{IWTlm} returns an object of \code{\link{class}} "\code{IWTlm}". The function \code{summary} is used to obtain and print a summary of the results.

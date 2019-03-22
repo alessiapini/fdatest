@@ -16,6 +16,8 @@ IWTimage(IWT_result, alpha = 0.05, abscissa_range = c(0, 1), nlevel = 20,
 \item{abscissa_range}{Range of the plot abscissa. The default is \code{c(0,1)}.}
 
 \item{nlevel}{Number of desired color levels for the p-value heatmap. The default is \code{nlevel=20}.}
+
+\item{plot_unadjusted}{Flag indicating if the unadjusted p-value function has to be added to the plots. The default is \code{FALSE}.}
 }
 \value{
 No value returned.

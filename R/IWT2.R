@@ -26,6 +26,8 @@
 #'
 #' @param recycle Flag used to decide whether the recycled version of the IWT should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
 #'
+#' @param alternative A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".
+#'
 #' @return \code{IWT2} returns an object of \code{\link{class}} "\code{IWT2}".
 #' An object of class "\code{IWT2}" is a list containing at least the following components:
 #' \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
