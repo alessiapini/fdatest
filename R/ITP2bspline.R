@@ -116,7 +116,7 @@ function(data1,data2,mu=0,order=2,nknots=dim(data1)[2],B=10000,paired=FALSE){
 
   print('Second step: joint univariate tests')
   #univariate permutations
-  T0 <- abs(colMeans(coeff[1:n1,]) - colMeans(coeff[(n1+1):n,])) #sample mean difference
+  T0 <- abs(colMeans(coeff[1:n1,,drop=FALSE]) - colMeans(coeff[(n1+1):n,,drop=FALSE])) #sample mean difference
   T_coeff <- matrix(ncol=p,nrow=B)
   for (perm in 1:B){
     if(paired==TRUE){
@@ -131,7 +131,7 @@ function(data1,data2,mu=0,order=2,nknots=dim(data1)[2],B=10000,paired=FALSE){
       permutazioni <- sample(n)
       coeff_perm <- coeff[permutazioni,]
     }
-    T_coeff[perm,] <- abs(colMeans(coeff_perm[1:n1,]) - colMeans(coeff_perm[(n1+1):n,]))
+    T_coeff[perm,] <- abs(colMeans(coeff_perm[1:n1,,drop=FALSE]) - colMeans(coeff_perm[(n1+1):n,,drop=FALSE]))
   }
   pval <- numeric(p)
   for(i in 1:p){

@@ -36,7 +36,7 @@ Usually a call to \code{\link{ITP2bspline}}, \code{\link{ITP2fourier}} or \code{
 \value{
 No value returned. 
 The function produces a graphical output of the ITP results:  the plot of the functional data and the one of the adjusted p-values. 
-The basis components selected as significant by the test at level \code{alpha1} and \code{alpha2} are highlighted in the plot of the corrected p-values and in the one of functional data (in case the test is based on a local basis, such as B-splines) by gray areas (light and dark gray, respectively). 
+The basis components selected as significant by the test at level \code{alpha1} and \code{alpha2} are highlighted in the plot of the adjusted p-values and in the one of functional data (in case the test is based on a local basis, such as B-splines) by gray areas (light and dark gray, respectively). 
 In the case of a Fourier basis with amplitude and phase decomposition, two plots of adjusted p-values are done, one for phase and one for amplitude.
 }
 \description{
@@ -53,7 +53,7 @@ ITP.result.bspline <- ITP2bspline(NASAtemp$milan,NASAtemp$paris,nknots=30,B=1000
 # Plotting the results of the ITP
 plot(ITP.result.bspline,xlab='Day',xrange=c(1,365),main='NASA data')
 # Selecting the significant components for the radius at 5\% level
-which(ITP.result.bspline$corrected.pval < 0.05)
+which(ITP.result.bspline$adjusted.pval < 0.05)
 
 }
 \references{

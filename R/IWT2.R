@@ -148,7 +148,7 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
 
   print('Point-wise tests')
   #univariate permutations
-  meandiff <- colMeans(coeff[1:n1,]) - colMeans(coeff[(n1+1):n,])
+  meandiff <- colMeans(coeff[1:n1,,drop=FALSE]) - colMeans(coeff[(n1+1):n,,drop=FALSE])
   sign.diff <- sign(meandiff)
   sign.diff[which(sign.diff==-1)] <- 0
   T0 <- switch(alternative,
@@ -170,7 +170,7 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
       permutazioni <- sample(n)
       coeff_perm <- coeff[permutazioni,]
     }
-    meandiff <- colMeans(coeff_perm[1:n1,]) - colMeans(coeff_perm[(n1+1):n,])
+    meandiff <- colMeans(coeff_perm[1:n1,,drop=FALSE]) - colMeans(coeff_perm[(n1+1):n,,drop=FALSE])
     sign.diff <- sign(meandiff)
     sign.diff[which(sign.diff==-1)] <- 0
     T_coeff[perm,] <- switch(alternative,
