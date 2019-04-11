@@ -3,7 +3,7 @@
 plot.IWT2 <- function(x, xrange = c(0,1),
                       alpha1 = 0.05, alpha2 = 0.01,
                       ylab = 'Functional Data', main = NULL, 
-                      lwd = 1, col=c(1,2), 
+                      lwd = 0.5, col=c(1,2), 
                       ylim = NULL, type='l', ...) {
   if (class(x) != "IWT2") stop("First argument is not a IWT2 object.")
   if (alpha1 < alpha2) {
@@ -30,9 +30,12 @@ plot.IWT2 <- function(x, xrange = c(0,1),
   main_data <- sub("^ : +", "", main_data)
   n_coeff <- dim(object$data.eval)[2]
   data_eval <- object$data.eval
-  if (is.null(ylim)) ylim <- range(data_eval)
+  if (is.null(ylim)) ylim <- range(data_eval,na.rm=TRUE)
   matplot(abscissa_pval, t(data_eval), type = 'l', main = main_data, 
           ylab = ylab, col = colors, lwd = lwd, ylim = ylim, ...)
+  mean1 = colMeans(object$data.eval[which(object$ord_labels==id_pop1),],na.rm=TRUE)
+  mean2 = colMeans(object$data.eval[which(object$ord_labels==id_pop2),],na.rm=TRUE)
+  
   difference1 <- which(object$adjusted_pval < alpha1)
   if (length(difference1) > 0) {
     for (j in 1:length(difference1)) {
@@ -57,6 +60,8 @@ plot.IWT2 <- function(x, xrange = c(0,1),
   }
   matplot(abscissa_pval, t(data_eval), type = 'l', main = main_data,
           ylab = ylab, col = colors, lwd = lwd, add = TRUE, ...)
+  #matlines(abscissa_pval,cbind(mean1,mean2),col=col,lwd=2,lty=1)
+  
   #  adjusted p-values
   main_p <- paste(main,': Adjusted p-values')
   main_p <- sub("^ : +", "", main_p)
@@ -86,7 +91,7 @@ plot.IWT2 <- function(x, xrange = c(0,1),
   for (j in 0:10) {
     abline(h = j / 10, col = 'lightgray', lty = "dotted")
   }
-  points(abscissa_pval, object$adjusted_pval, type=type,lwd=lwd)
+  points(abscissa_pval, object$adjusted_pval, type=type,lwd=2*lwd)
   
   devAskNewPage(ask = FALSE)
 }
