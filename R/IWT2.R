@@ -154,7 +154,7 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
   T0 <- switch(alternative,
                two.sided =  (meandiff)^2,
                greater   =  (meandiff*sign.diff)^2,
-               less      = -(meandiff*(sign.diff-1))^2)
+               less      =  (meandiff*(sign.diff-1))^2)
 
   T_coeff <- matrix(ncol=p,nrow=B)
   for (perm in 1:B){
@@ -176,7 +176,7 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
     T_coeff[perm,] <- switch(alternative,
                              two.sided =  (meandiff)^2,
                              greater   =  (meandiff*sign.diff)^2,
-                             less      = -(meandiff*(sign.diff-1))^2)
+                             less      =  (meandiff*(sign.diff-1))^2)
   }
   pval <- numeric(p)
   for(i in 1:p){

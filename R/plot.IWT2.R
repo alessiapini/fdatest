@@ -91,7 +91,7 @@ plot.IWT2 <- function(x, xrange = c(0,1),
   for (j in 0:10) {
     abline(h = j / 10, col = 'lightgray', lty = "dotted")
   }
-  points(abscissa_pval, object$adjusted_pval, type=type,lwd=2*lwd)
+  points(abscissa_pval, object$adjusted_pval, type=type,lwd=2)
   
   devAskNewPage(ask = FALSE)
 }

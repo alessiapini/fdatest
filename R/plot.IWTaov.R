@@ -76,7 +76,7 @@ plot.IWTaov <- function(x, xrange = c(0,1),
                         plot_adjpval = FALSE,
                         ylim = NULL, col = 1,
                         ylab = 'Functional Data', 
-                        main = NULL, lwd = 1, type='l', ...) {
+                        main = NULL, lwd = 0.5, type='l', ...) {
   if (class(x) != "IWTaov") stop("x should be an object of the class IWTaov")
   if (alpha1 < alpha2) {
     temp <- alpha1
@@ -84,6 +84,7 @@ plot.IWTaov <- function(x, xrange = c(0,1),
     alpha2 <- temp
   }
   object <- x
+  nvar <- dim(object$adjusted_pval_factors)[1]
   p <- length(object$unadjusted_pval_F)
   n <- dim(t(object$data.eval))[1]
   xmin <- xrange[1]
@@ -94,34 +95,38 @@ plot.IWTaov <- function(x, xrange = c(0,1),
   main_f <- sub("^ : +", "", main_f)
   
   if (is.null(ylim)) ylim <- range(object$data.eval)
-  matplot(abscissa_pval, t(object$data.eval), type = 'l', col = col, main = main_f, 
-          ylab = ylab, ylim = ylim, lwd = lwd, ...)
-  difference1 <- which(object$adjusted_pval_F < alpha1)
-  if (length(difference1) > 0) {
-    for (j in 1:length(difference1)) {
-      min_rect <- abscissa_pval[difference1[j]] - (abscissa_pval[2] - abscissa_pval[1])/2
-      max_rect <- min_rect + (abscissa_pval[2] - abscissa_pval[1])
-      rect(min_rect, par("usr")[3], max_rect, par("usr")[4], col = "gray90", 
-           density = -2, border = NA)
-    }
-    rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL,
-         border = "black")
-  }
-  difference2 <- which(object$adjusted_pval_F < alpha2)
-  if (length(difference2) > 0) {
-    for (j in 1:length(difference2)) {
-      min_rect <- abscissa_pval[difference2[j]] - (abscissa_pval[2] - abscissa_pval[1])/2
-      max_rect <- min_rect + (abscissa_pval[2] - abscissa_pval[1])
-      rect(min_rect, par("usr")[3], max_rect, par("usr")[4], col = "gray80", 
-           density = -2, border = NA)
-    }
-    rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL,
-         border = "black")
-  }
-  matplot(abscissa_pval, t(object$data.eval), type = 'l', 
-          col = col, add = TRUE, lwd = lwd, ...)
   
-  nvar <- dim(object$adjusted_pval_factors)[1]
+  if(nvar>1){
+    matplot(abscissa_pval, t(object$data.eval), type = 'l', col = col, main = main_f, 
+            ylab = ylab, ylim = ylim, lwd = lwd, ...)
+    difference1 <- which(object$adjusted_pval_F < alpha1)
+    if (length(difference1) > 0) {
+      for (j in 1:length(difference1)) {
+        min_rect <- abscissa_pval[difference1[j]] - (abscissa_pval[2] - abscissa_pval[1])/2
+        max_rect <- min_rect + (abscissa_pval[2] - abscissa_pval[1])
+        rect(min_rect, par("usr")[3], max_rect, par("usr")[4], col = "gray90", 
+             density = -2, border = NA)
+      }
+      rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL,
+           border = "black")
+    }
+    difference2 <- which(object$adjusted_pval_F < alpha2)
+    if (length(difference2) > 0) {
+      for (j in 1:length(difference2)) {
+        min_rect <- abscissa_pval[difference2[j]] - (abscissa_pval[2] - abscissa_pval[1])/2
+        max_rect <- min_rect + (abscissa_pval[2] - abscissa_pval[1])
+        rect(min_rect, par("usr")[3], max_rect, par("usr")[4], col = "gray80", 
+             density = -2, border = NA)
+      }
+      rect(par("usr")[1], par("usr")[3], par("usr")[2],par("usr")[4], col = NULL,
+           border = "black")
+    }
+    matplot(abscissa_pval, t(object$data.eval), type = 'l', 
+            col = col, add = TRUE, lwd = lwd, ...)
+    
+  }
+  
+  
   names_all <- colnames(object$design_matrix)
   interaz <- grep(':', names_all)
   for (var in 1:(dim(object$adjusted_pval_factors)[1])) {
