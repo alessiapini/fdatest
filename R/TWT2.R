@@ -5,7 +5,7 @@
 # B: number of permutations
 # paired: whether the test is paired or not
 # dx: optional. If data1 and data2 are fd objects, dx is used as grid step to evaluate them
-TWT <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
+TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   
   if(is.fd(data1)){ # data1 is a functional data object
     rangeval1 <- data1$basis$rangeval
