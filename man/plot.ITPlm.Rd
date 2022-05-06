@@ -9,10 +9,10 @@ Plotting ITP results for functional-on-scalar linear model testing
 Plotting function creating a graphical output of the ITP for the test on a functional-on-scalar linear model: functional data, functional coefficients and ITP-adjusted p-values for the F-test and t-tests are plotted.
 }
 \usage{
-\method{plot}{ITPlm}(x, xrange = c(0, 1), alpha1 = 0.05, alpha2 = 0.01, 
-     plot.adjpval = FALSE, col = c(1, rainbow(dim(x$corrected.pval.t)[1])), 
-     ylim = range(x$data.eval), ylab = "Functional Data", 
-     main = NULL, lwd = 1, pch = 16, ...)
+\method{plot}{ITPlm}(x,xrange=c(0,1),alpha1=0.05,alpha2=0.01,plot.adjpval=FALSE,
+                      col=c(1,rainbow(dim(x$adjusted.pval.t)[1])),ylim=range(x$data.eval),
+                      ylab='Functional Data',main=NULL,lwd=1,pch=16,
+                      ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

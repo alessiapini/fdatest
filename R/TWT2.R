@@ -29,7 +29,7 @@ TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   
   if (is.fd(mu)){ # mu is a functional data
     rangeval.mu <- mu$basis$rangeval
-    if(sum(rangeval.mu == rangeval)!=2){
+    if(sum(rangeval.mu == rangeval1)!=2){
       stop("rangeval of mu must be the same as rangeval of data.")
     }
     if(is.null(dx)){
@@ -47,6 +47,9 @@ TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   n1 <- dim(coeff1)[1]
   n2 <- dim(coeff2)[1]
   n <- n1+n2
+  data.eval <- rbind(coeff1,coeff2)
+  coeff1 <- coeff1 - matrix(data=mu.eval,nrow=n1,ncol=p)
+  
   coeff <- rbind(coeff1,coeff2)
   p <- dim(coeff)[2]
   etichetta_ord <- c(rep(1,n1),rep(2,n2))
@@ -112,7 +115,7 @@ TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
     mu = mu.eval,
     adjusted_pval = adjusted.pval,
     unadjusted_pval = pval,
-    data.eval=data.eval,
+    data_eval=data.eval,
     ord_labels = etichetta_ord
   )
   return(result)

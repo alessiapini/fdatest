@@ -40,7 +40,7 @@
 #' \item{heatmap.matrix.factors}{Heatmap matrix of p-values of functional F-tests on each factor of the analysis of variance (used only for plots).}
 #'
 #' @seealso See \code{\link{summary.IWTaov}} for summaries and \code{\link{plot.IWTaov}} for plotting the results.
-#' See \code{\link{ITPaov}} for a functional analysis of variance test based on B-spline basis expansion.
+#' See \code{\link{ITPaovbspline}} for a functional analysis of variance test based on B-spline basis expansion.
 #' See also \code{\link{IWTlm}} to fit and test a functional-on-scalar linear model applying the IWT, and \code{\link{IWT1}}, \code{\link{IWT2}}  for one-population and two-population tests.
 #'
 #'

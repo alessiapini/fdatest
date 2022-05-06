@@ -4,9 +4,13 @@
 \alias{ITPaovbspline}
 \title{Interval Testing Procedure for testing unctional analysis of variance with B-spline basis}
 \usage{
-ITPaovbspline(formula, order = 2,
-  nknots = dim(model.response(model.frame(formula)))[2], B = 1000,
-  method = "residuals")
+ITPaovbspline(
+  formula,
+  order = 2,
+  nknots = dim(model.response(model.frame(formula)))[2],
+  B = 1000,
+  method = "residuals"
+)
 }
 \arguments{
 \item{formula}{An object of class "\code{\link{formula}}" (or one that can be coerced to that class): a symbolic description of the model to be fitted.}

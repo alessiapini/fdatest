@@ -4,9 +4,20 @@
 \alias{plot.ITPaov}
 \title{Plot method for ITP results on functional ANOVA}
 \usage{
-\method{plot}{ITPaov}(x, xrange = c(0, 1), alpha1 = 0.05, alpha2 = 0.01,
-  plot.adjpval = FALSE, ylim = range(x$data.eval), col = 1,
-  ylab = "Functional Data", main = NULL, lwd = 1, pch = 16, ...)
+\method{plot}{ITPaov}(
+  x,
+  xrange = c(0, 1),
+  alpha1 = 0.05,
+  alpha2 = 0.01,
+  plot.adjpval = FALSE,
+  ylim = range(x$data.eval),
+  col = 1,
+  ylab = "Functional Data",
+  main = NULL,
+  lwd = 1,
+  pch = 16,
+  ...
+)
 }
 \arguments{
 \item{x}{The object to be plotted. An object of class "\code{ITPaov}", usually, a result of a call 

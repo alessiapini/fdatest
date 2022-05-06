@@ -4,8 +4,14 @@
 \alias{ITP2fourier}
 \title{Two populations Interval Testing Procedure with Fourier basis}
 \usage{
-ITP2fourier(data1, data2, mu = 0, maxfrequency = floor(dim(data1)[2]/2),
-  B = 10000, paired = FALSE)
+ITP2fourier(
+  data1,
+  data2,
+  mu = 0,
+  maxfrequency = floor(dim(data1)[2]/2),
+  B = 10000,
+  paired = FALSE
+)
 }
 \arguments{
 \item{data1}{Pointwise evaluations of the first population's functional data set on a uniform grid. \code{data1} is a matrix of dimensions \code{c(n1,J)}, with \code{J} evaluations on columns and \code{n1} units on rows.}

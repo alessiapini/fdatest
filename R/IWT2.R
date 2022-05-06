@@ -51,7 +51,7 @@
 #' plot(IWT.result,xrange=c(0,12),main='IWT results for testing mean differences')
 #'
 #' # Plotting the p-value heatmap
-#' IWTimage(IWT.result,abscissa.range=c(0,12))
+#' IWTimage(IWT.result,abscissa_range=c(0,12))
 #'
 #' # Selecting the significant components at 5% level
 #' which(IWT.result$adjusted_pval < 0.05)
@@ -137,14 +137,14 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
   p <- dim(coeff1)[2]
   n <- n1+n2
   etichetta_ord <- c(rep(1,n1),rep(2,n2))
-  coeff1 <- coeff1 - matrix(data=mu,nrow=n1,ncol=p)
+  coeff1 <- coeff1 - matrix(data=mu.eval,nrow=n1,ncol=p)
 
   #print('First step: basis expansion')
   #splines coefficients:
   eval <- coeff <- rbind(coeff1,coeff2)
 
   data.eval <- eval
-  data.eval[1:n1,] <- data.eval[1:n1,] + matrix(data=mu,nrow=n1,ncol=p)
+  data.eval[1:n1,] <- data.eval[1:n1,] + matrix(data=mu.eval,nrow=n1,ncol=p)
 
   print('Point-wise tests')
   #univariate permutations

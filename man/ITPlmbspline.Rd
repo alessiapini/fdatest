@@ -4,9 +4,13 @@
 \alias{ITPlmbspline}
 \title{Interval Testing Procedure for testing Functional-on-Scalar Linear Models with B-spline basis}
 \usage{
-ITPlmbspline(formula, order = 2,
-  nknots = dim(model.response(model.frame(formula)))[2], B = 10000,
-  method = "residuals")
+ITPlmbspline(
+  formula,
+  order = 2,
+  nknots = dim(model.response(model.frame(formula)))[2],
+  B = 10000,
+  method = "residuals"
+)
 }
 \arguments{
 \item{formula}{An object of class "\code{\link{formula}}" (or one that can be coerced to that class): a symbolic description of the model to be fitted.}

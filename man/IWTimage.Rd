@@ -4,8 +4,13 @@
 \alias{IWTimage}
 \title{Heatmap plot of the Interval Wise Testing Procedure results}
 \usage{
-IWTimage(IWT_result, alpha = 0.05, abscissa_range = c(0, 1), nlevel = 20,
-  plot_unadjusted = FALSE)
+IWTimage(
+  IWT_result,
+  alpha = 0.05,
+  abscissa_range = c(0, 1),
+  nlevel = 20,
+  plot_unadjusted = FALSE
+)
 }
 \arguments{
 \item{IWT_result}{Results of the ITP, as created by \code{\link{IWT1}}, 
@@ -35,7 +40,7 @@ IWT.result <- IWT2(NASAtemp$milan,NASAtemp$paris)
 # Plotting the results of the IWT
 IWTimage(IWT.result,abscissa_range=c(0,12))
 
-# Selecting the significant components for the radius at 5\\\% level
+# Selecting the significant components for the radius at 5\\% level
 which(IWT.result$corrected.pval < 0.05)
 
 }

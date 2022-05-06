@@ -29,7 +29,7 @@ PCT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,partition){
   
   if (is.fd(mu)){ # mu is a functional data
     rangeval.mu <- mu$basis$rangeval
-    if(sum(rangeval.mu == rangeval)!=2){
+    if(sum(rangeval.mu == rangeval1)!=2){
       stop("rangeval of mu must be the same as rangeval of data.")
     }
     if(is.null(dx)){

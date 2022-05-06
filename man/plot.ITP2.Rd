@@ -4,9 +4,19 @@
 \alias{plot.ITP2}
 \title{Plot method for ITP results on two-population tests}
 \usage{
-\method{plot}{ITP2}(x, xrange = c(0, 1), alpha1 = 0.05, alpha2 = 0.01,
-  ylab = "Functional Data", main = NULL, lwd = 1, col = c(1, 2),
-  pch = 16, ylim = range(object$data.eval), ...)
+\method{plot}{ITP2}(
+  x,
+  xrange = c(0, 1),
+  alpha1 = 0.05,
+  alpha2 = 0.01,
+  ylab = "Functional Data",
+  main = NULL,
+  lwd = 1,
+  col = c(1, 2),
+  pch = 16,
+  ylim = range(object$data.eval),
+  ...
+)
 }
 \arguments{
 \item{x}{The object to be plotted.

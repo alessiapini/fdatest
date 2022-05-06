@@ -4,8 +4,15 @@
 \alias{ITP2bspline}
 \title{Two populations Interval Testing Procedure with B-spline basis}
 \usage{
-ITP2bspline(data1, data2, mu = 0, order = 2, nknots = dim(data1)[2],
-  B = 10000, paired = FALSE)
+ITP2bspline(
+  data1,
+  data2,
+  mu = 0,
+  order = 2,
+  nknots = dim(data1)[2],
+  B = 10000,
+  paired = FALSE
+)
 }
 \arguments{
 \item{data1}{Pointwise evaluations of the first population's functional data set on a uniform grid. \code{data1} is a matrix of dimensions \code{c(n1,J)}, with \code{J} evaluations on columns and \code{n1} units on rows.}
