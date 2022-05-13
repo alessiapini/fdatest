@@ -91,5 +91,5 @@ Nonparametric inference for functional‐on‐scalar linear models applied to kn
 \seealso{
 \code{\link{ITPimage}} for the plot of p-values heatmaps. 
 See also \code{\link{ITP1bspline}}, \code{\link{ITP2bspline}} to perform the ITP to test on the mean of one population and test of differences between two populations. 
-See \code{\link{IWTaov}} for functional ANOVA not based on B-spline basis representation
+See \code{\link{IWTaovbspline}} for functional ANOVA not based on B-spline basis representation
 }

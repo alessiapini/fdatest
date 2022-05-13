@@ -35,7 +35,7 @@
 #' 
 #' @seealso \code{\link{IWTimage}} for the plot of p-values heatmaps. 
 #' See also  \code{\link{IWT1}} to perform the ITP to test the mean of one population. 
-#' See \code{\link{ITP2}} for two-population test based on B-spline basis representation.
+#' See \code{\link{ITP2bspline}} for two-population test based on B-spline basis representation.
 #' 
 #' @examples 
 #' # Importing the NASA temperatures data set

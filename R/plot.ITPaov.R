@@ -5,7 +5,7 @@
 #' functional data, and ITP-adjusted p-values of the F-tests on the whole model and on each factor are plotted.
 #' 
 #' @param x  The object to be plotted. An object of class "\code{ITPaov}", usually, a result of a call 
-#' to \code{\link{ITPaov}}.
+#' to \code{\link{ITPaovbspline}}.
 #' 
 #' @param xrange Range of the \code{x} axis.
 #' 

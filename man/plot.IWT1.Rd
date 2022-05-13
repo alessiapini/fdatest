@@ -82,5 +82,5 @@ Nonparametric inference for functional‐on‐scalar linear models applied to kn
 \seealso{
 \code{\link{IWTimage}} for the plot of p-values heatmaps. 
 See also  \code{\link{IWT2}} to perform the ITP to test differences between two populations. 
-See \code{\link{ITP1}} for one-population test based on B-spline basis representation.
+See \code{\link{ITP1bspline}} for one-population test based on B-spline basis representation.
 }
