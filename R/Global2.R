@@ -5,8 +5,12 @@
 # B: number of permutations
 # paired: whether the test is paired or not
 # dx: optional. If data1 and data2 are fd objects, dx is used as grid step to evaluate them
-# stat: optional. Test statistic used for the global test. It can either be 'Integral' (test statistic is the integral of the sample mean difference) or 'max' (test statistic is the max of the sample mean difference)
-#       default is 'Integral'
+# stat: optional. Test statistic used for the global test. It can either be: 
+#   'Integral' (default) integral of the sample mean difference
+#   'Max' max of the sample mean difference
+#   'Integral_std' (default) integral of the standardized sample mean difference (t-statistic)
+#   'Max_std' (default) integral of the standardized sample mean difference (t-statistic)
+
 Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'){
   if(is.fd(data1)){ # data1 is a functional data object
     rangeval1 <- data1$basis$rangeval
@@ -62,7 +66,15 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
   
   #print('Point-wise tests')
   #univariate permutations
-  T0 <- (colMeans(coeff[1:n1,]) - colMeans(coeff[(n1+1):n,]))^2 #sample mean difference
+  meandiff2 = (colMeans(coeff[1:n1,]) - colMeans(coeff[(n1+1):n,]))^2
+  S1 = cov(coeff[1:n1,])
+  S2 = cov(coeff[(n1+1):n,])
+  Sp = ((n1-1)*S1 + (n2-1)*S2) / (n1+n2-2)
+  T0 <- switch(stat,
+               Integral=meandiff2,
+               Max=meandiff2,
+               Integral_std= meandiff2/diag(Sp),
+               Max_std= meandiff2/diag(Sp))
   
   T_coeff <- matrix(ncol=p,nrow=B)
   for (perm in 1:B){
@@ -78,7 +90,17 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
       permutazioni <- sample(n)
       coeff_perm <- coeff[permutazioni,]
     }
-    T_coeff[perm,] <- (colMeans(coeff_perm[1:n1,]) - colMeans(coeff_perm[(n1+1):n,]))^2
+    
+    meandiff2_perm <- (colMeans(coeff_perm[1:n1,]) - colMeans(coeff_perm[(n1+1):n,]))^2
+    S1_perm = cov(coeff_perm[1:n1,])
+    S2_perm = cov(coeff_perm[(n1+1):n,])
+    Sp_perm = ((n1-1)*S1_perm + (n2-1)*S2_perm) / (n1+n2-2)
+    T_coeff[perm,] <- switch(stat,
+                             Integral=meandiff2_perm,
+                             Max=meandiff2_perm,
+                             Integral_std= meandiff2_perm/diag(Sp_perm),
+                             Max_std= meandiff2_perm/diag(Sp_perm))
+    
   }
   pval <- numeric(p)
   for(i in 1:p){
@@ -111,7 +133,8 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
     adjusted_pval = adjusted.pval,
     unadjusted_pval = pval,
     data.eval=data.eval,
-    ord_labels = etichetta_ord
+    ord_labels = etichetta_ord,
+    global_pval = adjusted.pval[1]
   )
   return(result)
 }
