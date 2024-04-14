@@ -3,7 +3,7 @@ Type: Package
 Title: Interval Wise Testing for Functional Data
 Version: 2.1.0
 Date: 2017-06-21
-Imports: fda
+Depends: fda
 Author: Alessia Pini, Simone Vantini
 Maintainer: Alessia Pini <alessia.pini@unicatt.it>
 Description: Implementation of local inferential procedures for functional data in different frameworks (i.e., one or two-population frameworks, functional linear models).    The current version of the package requires functional data evaluated on a uniform grid or fda objects, and provides the adjusted and unadjusted p-value functions based on nonparametric local tests. The package provides a plotting function creating a graphical output of the procedure: the p-value heat-map, the plot of the p-value functions, and the plot of the functional data.
