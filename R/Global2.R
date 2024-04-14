@@ -5,8 +5,9 @@
 # B: number of permutations
 # paired: whether the test is paired or not
 # dx: optional. If data1 and data2 are fd objects, dx is used as grid step to evaluate them
-
-Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
+# stat: optional. Test statistic used for the global test. It can either be 'Integral' (test statistic is the integral of the sample mean difference) or 'max' (test statistic is the max of the sample mean difference)
+#       default is 'Integral'
+Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'){
   if(is.fd(data1)){ # data1 is a functional data object
     rangeval1 <- data1$basis$rangeval
     rangeval2 <- data2$basis$rangeval
@@ -62,6 +63,7 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   #print('Point-wise tests')
   #univariate permutations
   T0 <- (colMeans(coeff[1:n1,]) - colMeans(coeff[(n1+1):n,]))^2 #sample mean difference
+  
   T_coeff <- matrix(ncol=p,nrow=B)
   for (perm in 1:B){
     if(paired==TRUE){
@@ -87,17 +89,23 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   #print('Partition tests')
   all_combs <- rbind(rep(1,p))
   ntests = 1
-  
-  #interval-wise tests
   adjusted.pval <- numeric(p)
-  responsible.test <- 1:p
-  for(test in 1:ntests){
-    T0_comb <- sum(T0[which(all_combs[test,]==1)])
-    T_comb <- (rowSums(T_coeff[,which(all_combs[test,]==1),drop=FALSE]))
+  
+  if(stat=='Integral'){
+    T0_comb <- sum(T0[which(all_combs[1,]==1)])
+    T_comb <- (rowSums(T_coeff[,which(all_combs[1,]==1),drop=FALSE]))
+    pval.temp <- mean(T_comb>=T0_comb)
+    indexes <- which(all_combs[1,]==1)
+    adjusted.pval[indexes] <- pval.temp
+  }else if (stat=='Max'){
+    T0_comb <- max(T0[which(all_combs[test,]==1)])
+    T_comb <- (apply(T_coeff[,which(all_combs[test,]==1)],1,max))
     pval.temp <- mean(T_comb>=T0_comb)
     indexes <- which(all_combs[test,]==1)
     adjusted.pval[indexes] <- pval.temp
   }
+  
+  
   result = list(
     test = '2pop', mu = mu.eval,
     adjusted_pval = adjusted.pval,
