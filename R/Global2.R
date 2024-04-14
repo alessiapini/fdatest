@@ -8,8 +8,8 @@
 # stat: optional. Test statistic used for the global test. It can either be: 
 #   'Integral' (default) integral of the sample mean difference
 #   'Max' max of the sample mean difference
-#   'Integral_std' (default) integral of the standardized sample mean difference (t-statistic)
-#   'Max_std' (default) integral of the standardized sample mean difference (t-statistic)
+#   'Integral_std'  integral of the standardized sample mean difference (t-statistic)
+#   'Max_std' integral of the standardized sample mean difference (t-statistic)
 
 Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'){
   if(is.fd(data1)){ # data1 is a functional data object
