@@ -120,10 +120,10 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
     indexes <- which(all_combs[1,]==1)
     adjusted.pval[indexes] <- pval.temp
   }else if (stat=='Max'){
-    T0_comb <- max(T0[which(all_combs[test,]==1)])
-    T_comb <- (apply(T_coeff[,which(all_combs[test,]==1)],1,max))
+    T0_comb <- max(T0[which(all_combs[1,]==1)])
+    T_comb <- (apply(T_coeff[,which(all_combs[1,]==1)],1,max))
     pval.temp <- mean(T_comb>=T0_comb)
-    indexes <- which(all_combs[test,]==1)
+    indexes <- which(all_combs[1,]==1)
     adjusted.pval[indexes] <- pval.temp
   }
   
