@@ -17,7 +17,8 @@
 #' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 #' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.
 #'
-#'
+#' @param stat Type of test statistic used for the global test. Possible values are: \code{'Integral'} (default)
+#' for the integral over the domain of the F-test statistic; \code{'Max'} for max over the domain of the F-test statistic. 
 #'
 #'
 #' @return \code{IWTaov} returns an object of \code{\link{class}} "\code{IWTaov}". The function \code{summary} is used to obtain and print a summary of the results.
@@ -73,7 +74,7 @@
 #' @export
 
 
-Globalaov <- function(formula,B=1000,method='residuals',dx=NULL,recycle=TRUE){
+Globalaov <- function(formula,B=1000,method='residuals',dx=NULL,recycle=TRUE,stat='Integral'){
   
   stat_lm_glob <- function(anova){
     result <- summary.lm(anova)$f[1]
@@ -287,22 +288,43 @@ Globalaov <- function(formula,B=1000,method='residuals',dx=NULL,recycle=TRUE){
   
   #combination
   print('Global test')
-  T0_temp <- sum(T0_glob[1:p])
-  T_temp <- rowSums(T_glob[,1:p])
-  Global_pval_F <- sum(T_temp>=T0_temp)/B
-  
-  Global_pval_factors = numeric(nvar)
-  for(ii in 1:(nvar)){
-    T0_temp <- sum(T0_part[ii,1:p])
-    T_temp <- rowSums(T_part[,ii,1:p])
-    Global_pval_factors[ii] <- sum(T_temp>=T0_temp)/B
-  }
+  if(stat=='Integral'){
+    T0_temp <- sum(T0_glob[1:p])
+    T_temp <- rowSums(T_glob[,1:p])
+    Global_pval_F <- sum(T_temp>=T0_temp)/B
     
-  corrected.pval_glob = rep(Global_pval_F,p)
-  
-  corrected.pval_part = matrix(nrow=nvar,ncol=p)
-  for(ii in 1:(nvar)){
-    corrected.pval_part[ii,] = rep(Global_pval_factors[ii],p)
+    Global_pval_factors = numeric(nvar)
+    for(ii in 1:(nvar)){
+      T0_temp <- sum(T0_part[ii,1:p])
+      T_temp <- rowSums(T_part[,ii,1:p])
+      Global_pval_factors[ii] <- sum(T_temp>=T0_temp)/B
+    }
+    
+    corrected.pval_glob = rep(Global_pval_F,p)
+    
+    corrected.pval_part = matrix(nrow=nvar,ncol=p)
+    for(ii in 1:(nvar)){
+      corrected.pval_part[ii,] = rep(Global_pval_factors[ii],p)
+    }
+  }else if(stat=='Max'){
+    T0_temp <- max(T0_glob)
+    T_temp <- apply(T_glob,1,max)
+    Global_pval_F <- sum(T_temp>=T0_temp)/B
+    
+    Global_pval_factors = numeric(nvar)
+    for(ii in 1:(nvar)){
+      T0_temp <- max(T0_part[ii,])
+      T_temp <- apply(T_part[,ii,],1,max)
+      Global_pval_factors[ii] <- sum(T_temp>=T0_temp)/B
+    }
+    
+    corrected.pval_glob = rep(Global_pval_F,p)
+    
+    corrected.pval_part = matrix(nrow=nvar,ncol=p)
+    for(ii in 1:(nvar)){
+      corrected.pval_part[ii,] = rep(Global_pval_factors[ii],p)
+    }
+    
   }
   
   coeff.regr = regr0$coeff
