@@ -30,6 +30,7 @@ export(Global2)
 export(FDR2)
 export(PCT2)
 export(TWT2)
+export(Globalaov)
 
 importFrom("grDevices", "devAskNewPage", "rainbow")
 importFrom("graphics", "abline", "axis", "image", "layout", "lines",
