@@ -26,6 +26,10 @@ export(IWT2)
 export(IWTaov)
 export(IWTimage)
 export(IWTlm)
+export(Global2)
+export(FDR2)
+export(PCT2)
+export(TWT2)
 
 importFrom("grDevices", "devAskNewPage", "rainbow")
 importFrom("graphics", "abline", "axis", "image", "layout", "lines",
