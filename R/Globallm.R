@@ -247,7 +247,7 @@ Globallm <- function(formula,
     T_temp <- rowSums(T_glob[,1:p])
     Global_pval_F <- sum(T_temp>=T0_temp)/B
     
-    Global_pval_part = numeric(nvar)
+    Global_pval_part = numeric(nvar + 1)
     for(ii in 1:(nvar + 1)){
       T0_temp <- sum(T0_part[ii,1:p])
       T_temp <- rowSums(T_part[,ii,1:p])
@@ -256,16 +256,16 @@ Globallm <- function(formula,
     
     corrected.pval_glob = rep(Global_pval_F,p)
     
-    corrected.pval_part = matrix(nrow=nvar,ncol=p)
-    for(ii in 1:(nvar)){
-      corrected.pval_part[ii,] = rep(Global_pval_factors[ii],p)
+    corrected.pval_part = matrix(nrow=nvar+1,ncol=p)
+    for(ii in 1:(nvar + 1)){
+      corrected.pval_part[ii,] = rep(Global_pval_part[ii],p)
     }
   }else if(stat=='Max'){
     T0_temp <- max(T0_glob)
     T_temp <- apply(T_glob,1,max)
     Global_pval_F <- sum(T_temp>=T0_temp)/B
     
-    Global_pval_part = numeric(nvar)
+    Global_pval_part = numeric(nvar + 1)
     for(ii in 1:(nvar + 1)){
       T0_temp <- max(T0_part[ii,])
       T_temp <- apply(T_part[,ii,],1,max)
@@ -273,8 +273,8 @@ Globallm <- function(formula,
     }
     
     corrected.pval_glob = rep(Global_pval_F,p)
-    corrected.pval_part = matrix(nrow=nvar,ncol=p)
-    for(ii in 1:(nvar)){
+    corrected.pval_part = matrix(nrow=nvar+1,ncol=p)
+    for(ii in 1:(nvar + 1)){
       corrected.pval_part[ii,] = rep(Global_pval_part[ii],p)
     }
     
@@ -299,7 +299,7 @@ Globallm <- function(formula,
   npt <- p
   R2.t = colSums((fitted.t - matrix(data=ybar.t,nrow=n,ncol=npt,byrow=TRUE))^2)/colSums((data.eval - matrix(data=ybar.t,nrow=n,ncol=npt,byrow=TRUE))^2)
   
-  print('Interval-Wise Testing completed')
+  print('Global Testing completed')
   
   
   ITP_result <- list(call=cl,
@@ -309,7 +309,7 @@ Globallm <- function(formula,
                      unadjusted_pval_part=pval_part,
                      adjusted_pval_part=corrected.pval_part,
                      Global_pval_F = Global_pval_F,
-                     Global_pval_factors = Global_pval_part,
+                     Global_pval_part = Global_pval_part,
                      data.eval=coeff,
                      coeff.regr.eval=coeff.t,
                      fitted.eval=fitted.t,
