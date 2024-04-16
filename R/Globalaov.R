@@ -1,4 +1,4 @@
-#' @title Global procedure for testing functional analysis of variance
+#' @title Global testing procedure for testing functional analysis of variance
 #'
 #' @description The function implements the Global Testing procedure for testing mean differences between several
 #' functional populations in a one-way or multi-way functional analysis of variance framework.
@@ -21,8 +21,8 @@
 #' for the integral over the domain of the F-test statistic; \code{'Max'} for max over the domain of the F-test statistic. 
 #'
 #'
-#' @return \code{IWTaov} returns an object of \code{\link{class}} "\code{IWTaov}". The function \code{summary} is used to obtain and print a summary of the results.
-#' An object of class "\code{IWTaov}" is a list containing at least the following components:
+#' @return \code{Globalaov} returns an object of \code{\link{class}} "\code{IWTaov}". The function \code{summary} is used to obtain and print a summary of the results.
+#' This object is a list containing the following components:
 #' \item{call}{The matched call.}
 #' \item{design_matrix}{The design matrix of the functional-on-scalar linear model.}
 #' \item{unadjusted_pval_F}{Evaluation on a grid of the unadjusted p-value function of the functional F-test.}
