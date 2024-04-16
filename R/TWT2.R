@@ -115,9 +115,10 @@ TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
     mu = mu.eval,
     adjusted_pval = adjusted.pval,
     unadjusted_pval = pval,
-    data_eval=data.eval,
+    data.eval=data.eval,
     ord_labels = etichetta_ord
   )
+  class(result) = 'IWT2'
   return(result)
 }
 
