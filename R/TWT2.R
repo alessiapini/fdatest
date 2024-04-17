@@ -83,7 +83,7 @@ TWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL){
   
   # Second part:
   # combination into subsets
-  #print('Interval-wise tests')
+  print('Threshold-wise tests')
   
   thresholds = c(0,sort(unique(pval)),1)
   adjusted.pval <- pval # we initialize the adjusted p-value as unadjusted one
