@@ -30,6 +30,7 @@ export(Global2)
 export(FDR2)
 export(PCT2)
 export(TWT2)
+export(TWTaov)
 export(Globalaov)
 export(Globallm)
 
