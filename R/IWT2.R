@@ -28,8 +28,7 @@
 #'
 #' @param alternative A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".
 #'
-#' @return \code{IWT2} returns an object of \code{\link{class}} "\code{IWT2}".
-#' An object of class "\code{IWT2}" is a list containing at least the following components:
+#' @return \code{IWT2} returns an object of \code{\link{class}} "\code{fdatest2}" containing the following components:
 #' \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
 #' \item{mu}{Evaluation on a grid of the functional mean difference under the null hypothesis (as entered by the user).}
 #' \item{unadjusted_pval}{Evaluation on a grid of the unadjusted p-value function.}
@@ -38,7 +37,7 @@
 #' \item{data.eval}{Evaluation on a grid of the functional data.}
 #' \item{ord_labels}{Vector of labels indicating the group membership of data.eval}
 #'
-#' @seealso See also \code{\link{plot.IWT2}} and \code{\link{IWTimage}} for plotting the results.
+#' @seealso See also \code{\link{plot.fdatest2}} and \code{\link{IWTimage}} for plotting the results.
 #'
 #' @examples
 #' # Importing the NASA temperatures data set
