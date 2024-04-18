@@ -1,6 +1,6 @@
-#' @title Two population Threshold Wise Testing procedure
+#' @title Two population Partition Closed Testing procedure
 #'
-#' @description The function implements the Threshold Wise Testing procedure for testing mean differences between two
+#' @description The function implements the Partition Closed Testing procedure for testing mean differences between two
 #' functional populations. Functional data are tested locally and unadjusted and adjusted p-value
 #' functions are provided. The unadjusted p-value function controls the point-wise error rate. The adjusted p-value function controls the
 #' family-wise error rate asymptotically.
