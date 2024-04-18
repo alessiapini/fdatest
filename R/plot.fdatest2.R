@@ -1,11 +1,11 @@
-#' @title Plot method for IWT results on two-population test
+#' @title Plot method for fdatest results on two-population test
 #' 
-#' @description \code{plot} method for class "\code{IWT2}".
-#' Plotting function creating a graphical output of the IWT
-#' for the test of the mean of one population: functional data and IWT-adjusted p-values are plotted.
+#' @description \code{plot} method for class "\code{fdatest2}".
+#' Plotting function creating a graphical output of the testing procedures
+#' for the mean comparison of two groups: functional data and adjusted p-values are plotted.
 #' 
-#' @param x  The object to be plotted. An object of class "\code{IWT1}", usually, a result of a call 
-#' to \code{\link{IWT2}}.
+#' @param x  The object to be plotted. An object of class "\code{fdatest2}", usually, a result of a call 
+#' to \code{\link{IWT2}}, \code{\link{TWT2}}, \code{\link{FDR2}}, or \code{\link{PCT2}}.
 #' 
 #' @param xrange Range of the \code{x} axis.
 #' 
@@ -33,9 +33,7 @@
 #' The function produces a graphical output of the IWT results:  the plot of the functional data and the one of the adjusted p-values. 
 #' The portions of the domain selected as significant by the test at level \code{alpha1} and \code{alpha2} are highlighted in the plot of the adjusted p-value function and in the one of functional data by gray areas (light and dark gray, respectively). 
 #' 
-#' @seealso \code{\link{IWTimage}} for the plot of p-values heatmaps. 
-#' See also  \code{\link{IWT1}} to perform the ITP to test the mean of one population. 
-#' See \code{\link{ITP2bspline}} for two-population test based on B-spline basis representation.
+#' @seealso \code{\link{IWTimage}} for the plot of p-values heatmaps (for IWT). 
 #' 
 #' @examples 
 #' # Importing the NASA temperatures data set
@@ -47,8 +45,6 @@
 #' # Plotting the results of the IWT
 #' plot(IWT.result,xrange=c(0,12),main='IWT results for testing mean differences')
 #'
-#' # Plotting the p-value heatmap
-#' IWTimage(IWT.result,abscissa_range=c(0,12))
 #'
 #' # Selecting the significant components at 5% level
 #' which(IWT.result$adjusted_pval < 0.05)
@@ -63,12 +59,12 @@
 #'
 #' @export
 
-plot.IWT2 <- function(x, xrange = c(0,1),
+plot.fdatest2 <- function(x, xrange = c(0,1),
                       alpha1 = 0.05, alpha2 = 0.01,
                       ylab = 'Functional Data', main = NULL, 
                       lwd = 0.5, col=c(1,2), 
                       ylim = NULL, type='l', ...) {
-  if (class(x) != "IWT2") stop("First argument is not a IWT2 object.")
+  if (class(x) != "fdatest2") stop("First argument is not a fdatest2 object.")
   if (alpha1 < alpha2) {
     temp <- alpha1
     alpha1 <- alpha2

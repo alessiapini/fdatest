@@ -1,15 +1,64 @@
-# Two groups comparison with the global test
-# arguments:
-# data1 and data2: functional data sets of the two groups. They can be either data of class fd or matrices with pointwise evaluations. 
-# mu: mean difference under the null hypothesis
-# B: number of permutations
-# paired: whether the test is paired or not
-# dx: optional. If data1 and data2 are fd objects, dx is used as grid step to evaluate them
-# stat: optional. Test statistic used for the global test. It can either be: 
-#   'Integral' (default) integral of the sample mean difference
-#   'Max' max of the sample mean difference
-#   'Integral_std'  integral of the standardized sample mean difference (t-statistic)
-#   'Max_std' integral of the standardized sample mean difference (t-statistic)
+#' @title Two population Global Testing procedure
+#'
+#' @description The function implements the Global Testing procedure for testing mean differences between two
+#' functional populations. Functional data are tested locally and unadjusted and adjusted p-value
+#' functions are provided. The unadjusted p-value function controls the point-wise error rate. The adjusted p-value function controls the
+#' interval-wise error rate.
+#'
+#' @param data1 First population's data. Either pointwise evaluations of the functional data set on a uniform grid, or a \code{fd} object from the package \code{fda}.
+#' If pointwise evaluations are provided, \code{data2} is a matrix of dimensions \code{c(n1,J)}, with \code{J} evaluations on columns and \code{n1} units on rows.
+#'
+#' @param data2 Second population's data. Either pointwise evaluations of the functional data set on a uniform grid, or a \code{fd} object from the package \code{fda}.
+#' If pointwise evaluations are provided, \code{data2} is a matrix of dimensions \code{c(n1,J)}, with \code{J} evaluations on columns and \code{n2} units on rows.
+#'
+#' @param mu Functional mean difference under the null hypothesis. Three possibilities are available for \code{mu}:
+#' a constant (in this case, a constant function is used);
+#' a \code{J}-dimensional vector containing the evaluations on the same grid which \code{data} are evaluated;
+#' a \code{fd} object from the package \code{fda} containing one function.
+#' The default is \code{mu=0}.
+#'
+#' @param B The number of iterations of the MC algorithm to evaluate the p-values of the permutation tests. The defualt is \code{B=1000}.
+#'
+#' @param paired Flag indicating whether a paired test has to be performed. Default is \code{FALSE}.
+#'
+#' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
+#' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.
+#'
+#' @param recycle Flag used to decide whether the recycled version of the Global should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
+#'
+#' @param alternative A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".
+#'
+#' @return \code{Global2} returns an object of \code{\link{class}} "\code{fdatest2}", containing the following components:
+#' \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
+#' \item{mu}{Evaluation on a grid of the functional mean difference under the null hypothesis (as entered by the user).}
+#' \item{unadjusted_pval}{Evaluation on a grid of the unadjusted p-value function (it is a constant function according to the global testing procedure).}
+#' \item{adjusted_pval}{Evaluation on a grid of the adjusted p-value function.}
+#' \item{data.eval}{Evaluation on a grid of the functional data.}
+#' \item{ord_labels}{Vector of labels indicating the group membership of data.eval}
+#'
+#' @seealso See also \code{\link{IWT2}} for local inference. See \code{\link{plot.fdatest2}} for plotting the results.
+#'
+#' @examples
+#' # Importing the NASA temperatures data set
+#' data(NASAtemp)
+#'
+#' # Performing the Global for two populations
+#' Global.result <- Global2(NASAtemp$paris,NASAtemp$milan)
+#'
+#' # Plotting the results of the Global
+#' plot(Global.result,xrange=c(0,12),main='Global results for testing mean differences')
+#'
+#'
+#' # Selecting the significant components at 5% level
+#' which(Global.result$adjusted_pval < 0.05)
+#'
+#' @references
+#' A. Pini and S. Vantini (2017).
+#' The Interval Testing Procedure: Inference for Functional Data Controlling the Family Wise Error Rate on Intervals. Biometrics 73(3): 835–845.
+#'
+#' Pini, A., & Vantini, S. (2017). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424
+#'
+#' @export
 
 Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'){
   if(is.fd(data1)){ # data1 is a functional data object
@@ -136,6 +185,7 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
     ord_labels = etichetta_ord,
     global_pval = adjusted.pval[1]
   )
+  class(result) = 'fdatest2'
   return(result)
 }
 

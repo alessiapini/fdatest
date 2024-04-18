@@ -233,7 +233,7 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
     pval_matrix = matrice_pval_asymm,
     data.eval=data.eval,
     ord_labels = etichetta_ord)
-  class(IWT.result) = 'IWT2'
+  class(IWT.result) = 'fdatest2'
   return(IWT.result)
 }
 

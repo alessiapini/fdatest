@@ -127,5 +127,6 @@ PCT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,partition){
     data.eval=data.eval,
     ord_labels = etichetta_ord
   )
+  class(result) = 'fdatest2'
   return(result)
 }
