@@ -61,8 +61,6 @@ TWT.result <- TWT2(NASAtemp$paris,NASAtemp$milan)
 # Plotting the results of the TWT
 plot(TWT.result,xrange=c(0,12),main='TWT results for testing mean differences')
 
-# Plotting the p-value heatmap
-TWTimage(TWT.result,abscissa_range=c(0,12))
 
 # Selecting the significant components at 5\% level
 which(TWT.result$adjusted_pval < 0.05)
