@@ -5,7 +5,7 @@
 #' Functional data are tested locally and unadjusted and adjusted p-value
 #' functions are provided. The unadjusted p-value function controls the point-wise error rate.
 #' The adjusted p-value function controls the
-#' interval-wise error rate.
+#' threshold-wise error rate.
 #'
 #' @param formula An object of class "\code{\link{formula}}" (or one that can be coerced to that class): a symbolic description of the model to be fitted.
 #' The output variable of the formula can be either a matrix of dimension \code{c(n,J)} collecting the pointwise evaluations of \code{n} functional data on the same grid of \code{J} points, or a \code{fd} object from the package \code{fda}.
@@ -17,7 +17,6 @@
 #' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 #' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.
 #'
-#' @param recycle Flag used to decide whether the recycled version of the IWT should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
 #'
 #'
 #'
@@ -26,18 +25,14 @@
 #' \item{call}{The matched call.}
 #' \item{design_matrix}{The design matrix of the functional-on-scalar linear model.}
 #' \item{unadjusted_pval_F}{Evaluation on a grid of the unadjusted p-value function of the functional F-test.}
-#' \item{pval_matrix_F}{Matrix of dimensions \code{c(p,p)} of the p-values of the intervalwise F-tests. The element \code{(i,j)} of matrix \code{pval.matrix} contains the p-value of the test of interval indexed by \code{(j,j+1,...,j+(p-i))}.}
 #' \item{adjusted_pval_F}{Evaluation on a grid of the adjusted p-value function of the functional F-test.}
 #' \item{unadjusted_pval_factors}{Evaluation on a grid of the unadjusted p-value function of the functional F-tests on each factor of the analysis of variance (rows).}
-#' \item{pval.matrix.factors}{Array of dimensions \code{c(L+1,p,p)} of the p-values of the multivariate F-tests on factors. The element \code{(l,i,j)} of array \code{pval.matrix} contains the p-value of the joint NPC test on factor \code{l} of the components \code{(j,j+1,...,j+(p-i))}.}
-#' \item{adjusted.pval.factors}{adjusted p-values of the functional F-tests on each factor of the analysis of variance (rows) and each basis coefficient (columns).}
+#' \item{adjusted_pval_factors}{adjusted p-values of the functional F-tests on each factor of the analysis of variance (rows) and each basis coefficient (columns).}
 #' \item{data.eval}{Evaluation on a fine uniform grid of the functional data obtained through the basis expansion.}
 #' \item{coeff.regr.eval}{Evaluation on a fine uniform grid of the functional regression coefficients.}
 #' \item{fitted.eval}{Evaluation on a fine uniform grid of the fitted values of the functional regression.}
 #' \item{residuals.eval}{Evaluation on a fine uniform grid of the residuals of the functional regression.}
 #' \item{R2.eval}{Evaluation on a fine uniform grid of the functional R-squared of the regression.}
-#' \item{heatmap.matrix.F}{Heatmap matrix of p-values of functional F-test (used only for plots).}
-#' \item{heatmap.matrix.factors}{Heatmap matrix of p-values of functional F-tests on each factor of the analysis of variance (used only for plots).}
 #'
 #' @seealso See \code{\link{summary.IWTaov}} for summaries and \code{\link{plot.IWTaov}} for plotting the results.
 #' See \code{\link{ITPaovbspline}} for a functional analysis of variance test based on B-spline basis expansion.
@@ -290,9 +285,9 @@ TWTaov <- function(formula,B=1000,method='residuals',dx=NULL){
   
   #combination
   print('Threshold-wise tests')
-  thresholds = c(0,sort(unique(pval_glob)),1)
   
   # F-test
+  thresholds = c(0,sort(unique(pval_glob)),1)
   adjusted.pval_glob <- pval_glob # we initialize the adjusted p-value as unadjusted one
   pval.tmp <- rep(0,p) # inizialize p-value vector resulting from combined test
   for(test in 1:length(thresholds)){
@@ -318,6 +313,7 @@ TWTaov <- function(formula,B=1000,method='residuals',dx=NULL){
   }
   
   # F-tests on single factors
+  thresholds = c(0,sort(unique(as.numeric(pval_part))),1)
   adjusted.pval_part <- pval_part # we initialize the adjusted p-value as unadjusted one
   
   for(ii in 1:(nvar)){
@@ -345,7 +341,6 @@ TWTaov <- function(formula,B=1000,method='residuals',dx=NULL){
     }
     
   }
-  
   
   
   coeff.regr = regr0$coeff
