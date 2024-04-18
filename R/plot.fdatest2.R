@@ -5,7 +5,7 @@
 #' for the mean comparison of two groups: functional data and adjusted p-values are plotted.
 #' 
 #' @param x  The object to be plotted. An object of class "\code{fdatest2}", usually, a result of a call 
-#' to \code{\link{IWT2}}, \code{\link{TWT2}}, \code{\link{FDR2}}, or \code{\link{PCT2}}.
+#' to \code{\link{fdatest2}}, \code{\link{IWT2}}, \code{\link{TWT2}}, \code{\link{FDR2}}, or \code{\link{PCT2}}.
 #' 
 #' @param xrange Range of the \code{x} axis.
 #' 
@@ -30,7 +30,7 @@
 #' such as \code{\link{graphical parameters}} (see \code{\link{par}}).
 #' 
 #' @return No value returned. 
-#' The function produces a graphical output of the IWT results:  the plot of the functional data and the one of the adjusted p-values. 
+#' The function produces a graphical output of the fdatest results:  the plot of the functional data and the one of the adjusted p-values. 
 #' The portions of the domain selected as significant by the test at level \code{alpha1} and \code{alpha2} are highlighted in the plot of the adjusted p-value function and in the one of functional data by gray areas (light and dark gray, respectively). 
 #' 
 #' @seealso \code{\link{IWTimage}} for the plot of p-values heatmaps (for IWT). 
@@ -39,8 +39,18 @@
 #' # Importing the NASA temperatures data set
 #' data(NASAtemp)
 #'
+#' # Performing the TWT for two populations
+#' TWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,method="TWT")
+#'
+#' # Plotting the results of the TWT
+#' plot(TWT.result,xrange=c(0,12),main='TWT results for testing mean differences')
+#'
+#'
+#' # Selecting the significant components at 5% level
+#' which(TWT.result$adjusted_pval < 0.05)
+#' 
 #' # Performing the IWT for two populations
-#' IWT.result <- IWT2(NASAtemp$paris,NASAtemp$milan)
+#' IWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,method="IWT")
 #'
 #' # Plotting the results of the IWT
 #' plot(IWT.result,xrange=c(0,12),main='IWT results for testing mean differences')
