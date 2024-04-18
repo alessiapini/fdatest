@@ -16,8 +16,6 @@ The output variable of the formula can be either a matrix of dimension \code{c(n
 
 \item{dx}{Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.}
-
-\item{recycle}{Flag used to decide whether the recycled version of the IWT should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.}
 }
 \value{
 \code{TWTaov} returns an object of \code{\link{class}} "\code{IWTaov}". The function \code{summary} is used to obtain and print a summary of the results.
@@ -25,18 +23,14 @@ An object of class "\code{IWTaov}" is a list containing at least the following c
 \item{call}{The matched call.}
 \item{design_matrix}{The design matrix of the functional-on-scalar linear model.}
 \item{unadjusted_pval_F}{Evaluation on a grid of the unadjusted p-value function of the functional F-test.}
-\item{pval_matrix_F}{Matrix of dimensions \code{c(p,p)} of the p-values of the intervalwise F-tests. The element \code{(i,j)} of matrix \code{pval.matrix} contains the p-value of the test of interval indexed by \code{(j,j+1,...,j+(p-i))}.}
 \item{adjusted_pval_F}{Evaluation on a grid of the adjusted p-value function of the functional F-test.}
 \item{unadjusted_pval_factors}{Evaluation on a grid of the unadjusted p-value function of the functional F-tests on each factor of the analysis of variance (rows).}
-\item{pval.matrix.factors}{Array of dimensions \code{c(L+1,p,p)} of the p-values of the multivariate F-tests on factors. The element \code{(l,i,j)} of array \code{pval.matrix} contains the p-value of the joint NPC test on factor \code{l} of the components \code{(j,j+1,...,j+(p-i))}.}
-\item{adjusted.pval.factors}{adjusted p-values of the functional F-tests on each factor of the analysis of variance (rows) and each basis coefficient (columns).}
+\item{adjusted_pval_factors}{adjusted p-values of the functional F-tests on each factor of the analysis of variance (rows) and each basis coefficient (columns).}
 \item{data.eval}{Evaluation on a fine uniform grid of the functional data obtained through the basis expansion.}
 \item{coeff.regr.eval}{Evaluation on a fine uniform grid of the functional regression coefficients.}
 \item{fitted.eval}{Evaluation on a fine uniform grid of the fitted values of the functional regression.}
 \item{residuals.eval}{Evaluation on a fine uniform grid of the residuals of the functional regression.}
 \item{R2.eval}{Evaluation on a fine uniform grid of the functional R-squared of the regression.}
-\item{heatmap.matrix.F}{Heatmap matrix of p-values of functional F-test (used only for plots).}
-\item{heatmap.matrix.factors}{Heatmap matrix of p-values of functional F-tests on each factor of the analysis of variance (used only for plots).}
 }
 \description{
 The function implements the Threshold Wise Testing procedure for testing mean differences between several
@@ -44,7 +38,7 @@ functional populations in a one-way or multi-way functional analysis of variance
 Functional data are tested locally and unadjusted and adjusted p-value
 functions are provided. The unadjusted p-value function controls the point-wise error rate.
 The adjusted p-value function controls the
-interval-wise error rate.
+threshold-wise error rate.
 }
 \examples{
 # Importing the NASA temperatures data set

@@ -25,13 +25,9 @@
 #' \item{call}{call of the function.}
 #' \item{design_matrix}{design matrix of the linear model.}
 #' \item{unadjusted_pval_F}{unadjusted p-value function of the F test.}
-#' \item{pval_matrix_F}{Matrix of dimensions c(p,p) of the p-values of the Threshold-wise F-tests.
-#'   The element (i,j) of matrix pval_matrix_F contains the p-value of the test on Threshold (j,j+1,...,j+(p-i)).}
 #' \item{adjusted_pval_F}{adjusted p-value function of the F test.}
 #' \item{unadjusted_pval_part}{unadjusted p-value functions of the functional t-tests on each covariate, 
 #'                         separately (rows) on each domain point (columns).}
-#' \item{pval_matrix_part}{Array of dimensions c(L+1,p,p) of the p-values of the Threshold-wise t-tests on covariates. 
-#'                     The element (l,i,j) of array pval_matrix_part contains the p-value of the test of covariate l on Threshold (j,j+1,...,j+(p-i)).}
 #' \item{adjusted_pval_part}{adjusted p-values of the functional t-tests on each covariate (rows) on each domain point (columns).}
 #' \item{data.eval}{evaluation of functional data.}
 #' \item{coeff.regr.eval}{evaluation of the regression coefficients.}
@@ -317,11 +313,9 @@ TWTlm <- function(formula,
   TWT_result <- list(call=cl,
                      design_matrix=design_matrix,
                      unadjusted_pval_F=pval_glob,
-                     pval_matrix_F=matrice_pval_asymm_glob,
-                     adjusted_pval_F=corrected.pval_glob,
+                     adjusted_pval_F=adjusted.pval_glob,
                      unadjusted_pval_part=pval_part,
-                     pval_matrix_part=matrice_pval_asymm_part,
-                     adjusted_pval_part=corrected.pval_part,
+                     adjusted_pval_part=adjusted.pval_part,
                      data.eval=coeff,
                      coeff.regr.eval=coeff.t,
                      fitted.eval=fitted.t,
