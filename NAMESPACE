@@ -34,6 +34,7 @@ export(TWTaov)
 export(TWTlm)
 export(Globalaov)
 export(Globallm)
+export(fdatest2)
 
 importFrom("grDevices", "devAskNewPage", "rainbow")
 importFrom("graphics", "abline", "axis", "image", "layout", "lines",
