@@ -37,12 +37,10 @@ If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.}
 \item{alternative}{A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 }
 \value{
-\code{IWT2} returns an object of \code{\link{class}} "\code{IWT2}".
-An object of class "\code{IWT2}" is a list containing at least the following components:
+\code{TWT2} returns an object of \code{\link{class}} "\code{fdatest2}" containing the following components:
 \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
 \item{mu}{Evaluation on a grid of the functional mean difference under the null hypothesis (as entered by the user).}
 \item{unadjusted_pval}{Evaluation on a grid of the unadjusted p-value function.}
-\item{pval_matrix}{Matrix of dimensions \code{c(p,p)} of the p-values of the Thresholdwise tests. The element \code{(i,j)} of matrix \code{pval.matrix} contains the p-value of the test contains the p-value of the test of Threshold indexed by \code{(j,j+1,...,j+(p-i))}.}
 \item{adjusted_pval}{Evaluation on a grid of the adjusted p-value function.}
 \item{data.eval}{Evaluation on a grid of the functional data.}
 \item{ord_labels}{Vector of labels indicating the group membership of data.eval}
@@ -57,17 +55,17 @@ family-wise error rate asymptotically.
 # Importing the NASA temperatures data set
 data(NASAtemp)
 
-# Performing the IWT for two populations
-IWT.result <- IWT2(NASAtemp$paris,NASAtemp$milan)
+# Performing the TWT for two populations
+TWT.result <- TWT2(NASAtemp$paris,NASAtemp$milan)
 
-# Plotting the results of the IWT
-plot(IWT.result,xrange=c(0,12),main='IWT results for testing mean differences')
+# Plotting the results of the TWT
+plot(TWT.result,xrange=c(0,12),main='TWT results for testing mean differences')
 
 # Plotting the p-value heatmap
-IWTimage(IWT.result,abscissa_range=c(0,12))
+TWTimage(TWT.result,abscissa_range=c(0,12))
 
 # Selecting the significant components at 5\% level
-which(IWT.result$adjusted_pval < 0.05)
+which(TWT.result$adjusted_pval < 0.05)
 
 }
 \references{
@@ -77,5 +75,5 @@ The Interval Testing Procedure: Inference for Functional Data Controlling the Fa
 Pini, A., & Vantini, S. (2017). Interval-wise testing for functional data. \emph{Journal of Nonparametric Statistics}, 29(2), 407-424
 }
 \seealso{
-See also \code{\link{plot.IWT2}} and \code{\link{IWTimage}} for plotting the results.
+See also \code{\link{plot.fdatest2}} for plotting the results.
 }
