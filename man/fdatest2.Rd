@@ -7,12 +7,12 @@
 fdatest2(
   data1,
   data2,
+  method,
   mu = 0,
   B = 1000,
   paired = FALSE,
   dx = NULL,
   alternative = "two.sided",
-  method,
   recycle = TRUE,
   partition = NULL
 )
@@ -23,6 +23,8 @@ If pointwise evaluations are provided, \code{data2} is a matrix of dimensions \c
 
 \item{data2}{Second population's data. Either pointwise evaluations of the functional data set on a uniform grid, or a \code{fd} object from the package \code{fda}.
 If pointwise evaluations are provided, \code{data2} is a matrix of dimensions \code{c(n1,J)}, with \code{J} evaluations on columns and \code{n2} units on rows.}
+
+\item{method}{A character string specifying the method chosen to adjust the p-value. Should be one of the following: "\code{Global}", "\code{IWT}", "\code{TWT}", "\code{PCT}", "\code{FDR}".}
 
 \item{mu}{Functional mean difference under the null hypothesis. Three possibilities are available for \code{mu}:
 a constant (in this case, a constant function is used);
@@ -38,8 +40,6 @@ The default is \code{mu=0}.}
 If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.}
 
 \item{alternative}{A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
-
-\item{method}{A character string specifying the method chosen to adjust the p-value. Should be one of the following: "\code{Global}", "\code{IWT}", "\code{TWT}", "\code{PCT}", "\code{FDR}".}
 
 \item{recycle}{Used only if \code{method}="\code{IWT}". Flag used to decide whether the recycled version of the IWT should be used. Default is \code{TRUE}.}
 
@@ -70,7 +70,7 @@ to the following methods:
 data(NASAtemp)
 
 # Performing the TWT for two populations
-TWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,method="TWT")
+TWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,"TWT")
 
 # Plotting the results of the TWT
 plot(TWT.result,xrange=c(0,12),main='TWT results for testing mean differences')
@@ -80,7 +80,7 @@ plot(TWT.result,xrange=c(0,12),main='TWT results for testing mean differences')
 which(TWT.result$adjusted_pval < 0.05)
 
 # Performing the IWT for two populations
-IWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,method="IWT")
+IWT.result <- fdatest2(NASAtemp$paris,NASAtemp$milan,"IWT")
 
 # Plotting the results of the IWT
 plot(IWT.result,xrange=c(0,12),main='IWT results for testing mean differences')
