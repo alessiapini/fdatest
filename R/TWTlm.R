@@ -36,8 +36,7 @@
 #' \item{R2.eval}{evaluation of the functional R-suared.}
 #'
 #' @seealso See \code{\link{summary.TWTlm}} for summaries and \code{\link{plot.TWTlm}} for plotting the results.
-#' See \code{\link{ITPlmbspline}} for a functional linear model test based on an a-priori selected B-spline basis expansion.
-#' See also \code{\link{TWTaov}} to fit and test a functional analysis of variance applying the TWT, and \code{\link{TWT1}}, \code{\link{TWT2}} for one-population and two-population tests.
+#' See also \code{\link{TWTaov}} to fit and test a functional analysis of variance applying the TWT, and  \code{\link{TWT2}} for two-population test.
 #'
 #'
 #' @examples

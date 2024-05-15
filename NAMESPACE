@@ -43,3 +43,4 @@ importFrom("stats", "aov", "as.formula", "cov", "fft", "lm", "lm.fit",
            "model.frame", "model.matrix", "model.response", "optimize",
            "rbinom", "summary.lm", "terms")
 importFrom("utils", "combn")
+importFrom("stats", "p.adjust")

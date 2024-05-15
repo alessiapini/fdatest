@@ -16,7 +16,7 @@
 #' 
 #' @return No value returned.
 #' 
-#' @seealso See \code{\link{plot.IWT1}}, \code{\link{plot.IWT2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.
+#' @seealso See \code{\link{plot.IWT1}}, \code{\link{plot.fdatest2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.
 #' 
 #' @examples
 #' # Importing the NASA temperatures data set
