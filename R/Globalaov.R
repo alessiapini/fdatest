@@ -117,6 +117,11 @@ Globalaov <- function(formula,B=1000,method='residuals',dx=NULL,recycle=TRUE,sta
     stop("First argument of the formula must be either a functional data object or a matrix.")
   }
   
+  possible_statistics <- c("Integral",  "Max")
+  if(!(stat %in% possible_statistics)){
+    stop(paste0('Possible statistics are ',paste0(possible_statistics,collapse=', ')))
+  }
+  
   #design.matrix = model.matrix(formula)
   #mf = model.frame(formula)
   #data = model.response(mf)
