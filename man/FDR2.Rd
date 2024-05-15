@@ -35,8 +35,6 @@ The default is \code{mu=0}.}
 If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.}
 
 \item{alternative}{A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
-
-\item{partition}{Vector of length \code{J} containing the labels assigning each point of the domain to an element of the partition.}
 }
 \value{
 \code{FDR2} returns an object of \code{\link{class}} "\code{fdatest2}" containing the following components:

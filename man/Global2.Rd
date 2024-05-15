@@ -34,6 +34,11 @@ The default is \code{mu=0}.}
 \item{dx}{Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.}
 
+\item{stat}{Test statistic used for the global test. 
+Possible values are: \code{"Integral"}: integral of the squared sample mean difference; \code{"Max"}: maximum of the squared sample mean difference;
+\code{"Integral_std"}: integral of the squared t-test statistic; \code{"Max_std"}: maximum of the squared t-test statistic.
+Default is \code{"Integral"}.}
+
 \item{recycle}{Flag used to decide whether the recycled version of the Global should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.}
 
 \item{alternative}{A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}

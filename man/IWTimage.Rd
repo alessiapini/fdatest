@@ -53,5 +53,5 @@ Abramowicz, K., Hager, C. K., Pini, A., Schelin, L., Sjostedt de Luna, S., & Van
 Nonparametric inference for functional‐on‐scalar linear models applied to knee kinematic hop data after injury of the anterior cruciate ligament. \emph{Scandinavian Journal of Statistics} 45(4), 1036-1061.
 }
 \seealso{
-See \code{\link{plot.IWT1}}, \code{\link{plot.IWT2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.
+See \code{\link{plot.IWT1}}, \code{\link{plot.fdatest2}}, \code{\link{plot.IWTlm}}, and \code{\link{plot.IWTaov}} for the plot method applied to the IWT results of one- and two-population tests, linear models, and ANOVA, respectively.
 }
