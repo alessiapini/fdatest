@@ -111,6 +111,12 @@ Globallm <- function(formula,
     stop("First argument of the formula must be either a functional data object or a matrix.")
   }
   
+  possible_statistics <- c("Integral",  "Max")
+  if(!(stat %in% possible_statistics)){
+    stop(paste0('Possible statistics are ',paste0(possible_statistics,collapse=', ')))
+  }
+  
+  
   dummynames.all <- colnames(attr(terms(formula),"factors"))
   formula.const <- deparse(formula[[3]],width.cutoff = 500L) #extracting the part after ~ on formula. this will not work if the formula is longer than 500 char
   
