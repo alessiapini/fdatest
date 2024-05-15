@@ -26,7 +26,8 @@
 #'
 #' @param stat Test statistic used for the global test. 
 #' Possible values are: \code{"Integral"}: integral of the squared sample mean difference; \code{"Max"}: maximum of the squared sample mean difference;
-#' \code{"Integral_std"}: integral of the squared t-test statistic; \code{"Max_std"}: maximum of the squared t-test statistic 
+#' \code{"Integral_std"}: integral of the squared t-test statistic; \code{"Max_std"}: maximum of the squared t-test statistic.
+#' Default is \code{"Integral"}. 
 #'
 #' @param recycle Flag used to decide whether the recycled version of the Global should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
 #'
@@ -101,6 +102,10 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
     stop("Second argument must be either a functional data object or a numeric vector.")
   }
   
+  possible_statistics <- c("Integral", "Integral_std", "Max","Max_std")
+  if(!(stat %in% possible_statistics)){
+    stop(paste0('Possible statistics are ',paste0(possible_statistics,collapse=', ')))
+  }
   
   n1 <- dim(coeff1)[1]
   n2 <- dim(coeff2)[1]
@@ -166,13 +171,13 @@ Global2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,stat='Integral'
   ntests = 1
   adjusted.pval <- numeric(p)
   
-  if(stat=='Integral'){
+  if(stat=='Integral' | stat=='Integral_std'){
     T0_comb <- sum(T0[which(all_combs[1,]==1)])
     T_comb <- (rowSums(T_coeff[,which(all_combs[1,]==1),drop=FALSE]))
     pval.temp <- mean(T_comb>=T0_comb)
     indexes <- which(all_combs[1,]==1)
     adjusted.pval[indexes] <- pval.temp
-  }else if (stat=='Max'){
+  }else if (stat=='Max' | stat=='Max_std'){
     T0_comb <- max(T0[which(all_combs[1,]==1)])
     T_comb <- (apply(T_coeff[,which(all_combs[1,]==1)],1,max))
     pval.temp <- mean(T_comb>=T0_comb)
