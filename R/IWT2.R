@@ -19,14 +19,16 @@
 #'
 #' @param B The number of iterations of the MC algorithm to evaluate the p-values of the permutation tests. The defualt is \code{B=1000}.
 #'
-#' @param paired Flag indicating whether a paired test has to be performed. Default is \code{FALSE}.
+#' @param paired A logical indicating whether a paired test has to be performed. Default is \code{FALSE}.
 #'
 #' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 #' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.
 #'
-#' @param recycle Flag used to decide whether the recycled version of the IWT should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
+#' @param recycle A logical used to decide whether the recycled version of the IWT should be used (see Pini and Vantini, 2017 for details). Default is \code{TRUE}.
 #'
 #' @param alternative A character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".
+#' 
+#' @param verbose Logical: if \code{FALSE}, reduces the amount of output. Default is \code{TRUE}.
 #'
 #' @return \code{IWT2} returns an object of \code{\link{class}} "\code{fdatest2}" containing the following components:
 #' \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
@@ -64,7 +66,7 @@
 #' @export
 
 
-IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alternative="two.sided"){
+IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alternative="two.sided",verbose=TRUE){
   pval.correct <- function(pval.matrix){
     matrice_pval_2_2x <- cbind(pval.matrix,pval.matrix)
     p <- dim(pval.matrix)[2]
