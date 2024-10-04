@@ -147,7 +147,8 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
   data.eval <- eval
   data.eval[1:n1,] <- data.eval[1:n1,] + matrix(data=mu.eval,nrow=n1,ncol=p)
 
-  print('Point-wise tests')
+  if(verbose)
+    print('Point-wise tests')
   #univariate permutations
   meandiff <- colMeans(coeff[1:n1,,drop=FALSE],na.rm=TRUE) - colMeans(coeff[(n1+1):n,,drop=FALSE],na.rm=TRUE)
   sign.diff <- sign(meandiff)
@@ -185,7 +186,8 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
   }
 
   #combination
-  print('Interval-wise tests')
+  if(verbose)
+    print('Interval-wise tests')
 
   #asymmetric combination matrix:
   matrice_pval_asymm <- matrix(nrow=p,ncol=p)
@@ -207,7 +209,8 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
         pval_temp <- sum(T_temp>=T0_temp)/B
         matrice_pval_asymm[i,j] <- pval_temp
       }
-      print(paste('creating the p-value matrix: end of row ',as.character(p-i+1),' out of ',as.character(p),sep=''))
+      if(verbose)
+        print(paste('creating the p-value matrix: end of row ',as.character(p-i+1),' out of ',as.character(p),sep=''))
     }
   }else{ # without recycling
     for(i in (p-1):maxrow){ # rows
@@ -219,14 +222,16 @@ IWT2 <- function(data1,data2,mu=0,B=1000,paired=FALSE,dx=NULL,recycle=TRUE,alter
         pval_temp <- sum(T_temp>=T0_temp)/B
         matrice_pval_asymm[i,j] <- pval_temp
       }
-      print(paste('creating the p-value matrix: end of row ',as.character(p-i+1),' out of ',as.character(p),sep=''))
+      if(verbose)
+        print(paste('creating the p-value matrix: end of row ',as.character(p-i+1),' out of ',as.character(p),sep=''))
     }
   }
 
   corrected.pval.matrix <- pval.correct(matrice_pval_asymm)
   corrected.pval <- corrected.pval.matrix[1,]
 
-  print('Interval-Wise Testing completed')
+  if(verbose)
+    print('Interval-Wise Testing completed')
   IWT.result <- list(
     test = '2pop', mu = mu.eval,
     adjusted_pval = corrected.pval,

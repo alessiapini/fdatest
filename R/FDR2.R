@@ -19,7 +19,7 @@
 #'
 #' @param B The number of iterations of the MC algorithm to evaluate the p-values of the permutation tests. The defualt is \code{B=1000}.
 #'
-#' @param paired Flag indicating whether a paired test has to be performed. Default is \code{FALSE}.
+#' @param paired A logical indicating whether a paired test has to be performed. Default is \code{FALSE}.
 #'
 #' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 #' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.

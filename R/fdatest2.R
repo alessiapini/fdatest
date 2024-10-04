@@ -26,7 +26,7 @@
 #'
 #' @param B The number of iterations of the MC algorithm to evaluate the p-values of the permutation tests. The defualt is \code{B=1000}.
 #'
-#' @param paired Flag indicating whether a paired test has to be performed. Default is \code{FALSE}.
+#' @param paired A logical indicating whether a paired test has to be performed. Default is \code{FALSE}.
 #'
 #' @param dx Used only if a \code{fd} object is provided. In this case, \code{dx} is the size of the discretization step of the grid  used to evaluate functional data.
 #' If set to \code{NULL}, a grid of size 100 is used. Default is \code{NULL}.
@@ -36,6 +36,8 @@
 #' @param recycle Used only if \code{method}="\code{IWT}". Flag used to decide whether the recycled version of the IWT should be used. Default is \code{TRUE}.
 #' 
 #' @param partition Used only if \code{method}="\code{PCT}". The partition to be used for PCT procedure. Default is \code{NULL}.
+#'
+#' @param verbose Used only if \code{method}="\code{IWT}". Logical: if \code{FALSE}, reduces the amount of output. Default is \code{TRUE}.
 #'
 #' @return \code{fdatest2} returns an object of \code{\link{class}} "\code{fdatest2}" containing at least the following components:
 #' \item{test}{String vector indicating the type of test performed. In this case equal to \code{"2pop"}.}
@@ -87,7 +89,7 @@
 #'
 #' @export
 
-fdatest2 <- function(data1,data2,method,mu=0,B=1000,paired=FALSE,dx=NULL,alternative="two.sided",recycle=TRUE,partition=NULL){
+fdatest2 <- function(data1,data2,method,mu=0,B=1000,paired=FALSE,dx=NULL,alternative="two.sided",recycle=TRUE,partition=NULL,verbose=TRUE){
   possible_alternatives <- c("two.sided", "less", "greater")
   if(!(alternative %in% possible_alternatives)){
     stop(paste0('Possible alternatives are ',paste0(possible_alternatives,collapse=', ')))
@@ -103,7 +105,7 @@ fdatest2 <- function(data1,data2,method,mu=0,B=1000,paired=FALSE,dx=NULL,alterna
   }
   
   result = switch(method,
-                  IWT = IWT2(data1=data1,data2=data2,mu=mu,B=B,paired=paired,dx=dx,recycle = recycle,alternative = alternative),
+                  IWT = IWT2(data1=data1,data2=data2,mu=mu,B=B,paired=paired,dx=dx,recycle = recycle,alternative = alternative,verbose=verbose),
                   TWT = TWT2(data1=data1,data2=data2,mu=mu,B=B,paired=paired,dx=dx,alternative = alternative),
                   PCT = PCT2(data1=data1,data2=data2,mu=mu,B=B,paired=paired,dx=dx,alternative = alternative,partition = partition),
                   Global = Global2(data1=data1,data2=data2,mu=mu,B=B,paired=paired,dx=dx,alternative = alternative),
